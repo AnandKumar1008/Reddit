@@ -1,0 +1,60 @@
+.reddit_clone-menu {
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+  font-family: var(--font-c);
+  height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  z-index: 100;
+}
+.reddit_clone-menu {
+  position: fixed;
+  top: 3rem;
+  left: 0rem;
+}
+.reddit_clone-menu_close {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: end;
+  /* gap: 1rem; */
+  /* padding: 0.25rem 1rem; */
+}
+.reddit_clone-menu_close button {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+\ .reddit_clone-menu_close button:hover {
+  background-color: var(--color-a-light);
+}
+.reddit_clone-menu button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  text-align: start;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--color-bg);
+  font-family: var(--font-c);
+  color: var(--color-text);
+  /* padding-left: 1rem; */
+}
+.reddit_clone-menu button:hover {
+  /* background-color: var(--color-border); */
+  background-color: rgba(218, 224, 230, 0.5);
+  cursor: pointer;
+}
+.reddit_clone-menu p {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  font-family: var(--font-c);
+  color: var(--color-text);
+}
+.react_clone-menu_icons {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  color: var(--color-text);
+}

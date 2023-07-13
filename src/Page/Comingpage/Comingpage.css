@@ -1,0 +1,14 @@
+.reddit_clone_comimg_page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* background-color: var(--color-orgred); */
+  align-items: center;
+  justify-content: center;
+  color: var(--color-a);
+  font-family: var(--font-c);
+  font-weight: bold;
+}
+.reddit_clone_comimg_page p {
+  font-family: var(--font-c);
+}

@@ -1,0 +1,128 @@
+.reddit_clone-coinspage-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.reddit_clone-pseudo_element_coin {
+  width: 18%;
+}
+.reddit_clone-coinspage {
+  background-color: var(--color-bg);
+}
+.reddit_clone-coinspage_heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin: 4rem auto;
+}
+.reddit_clone-coinspage_heading h2 {
+  text-align: center;
+  font-family: var(--font-c);
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+.reddit_clone-coinspage_heading h4 {
+  text-align: center;
+  font-family: var(--font-c);
+  font-size: 1.2rem;
+}
+.reddit_clone-awards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 10rem;
+  /* background-color: red; */
+}
+/* .reddit_clone-awards > * {
+  flex: 1;
+} */
+.reddit_clone-awards_item {
+  /* flex: 1; */
+  /* align-items: center; */
+  text-align: center;
+  width: 100%;
+}
+.reddit_clone-awards_item p {
+  width: 100%;
+  font-family: var(--font-c);
+}
+.reddit_clone-awards_item h3 {
+  text-align: center;
+  margin: 1rem 0;
+  font-family: var(--font-c);
+}
+.reddit_clone-awards_item img {
+  max-width: 100%;
+  height: 8rem;
+}
+.reddit_clone-coins_section {
+  background-color: var(--color-footer);
+}
+.reddit_clone-coins_section h1 {
+  color: var(--color-orgred);
+  font-family: var(--font-c);
+  text-align: center;
+  padding: 2rem 0;
+}
+.reddit_clone-coins_item {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-bg);
+  margin: 2rem auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.reddit_clone-coins_item_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 3;
+}
+.reddit_clone-coins_item_button {
+  flex: 1;
+  width: 100%;
+}
+.reddit_clone-coins_item_button button {
+  background-color: var(--color-a);
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+  width: 90%;
+}
+.reddit_clone-coins_item_img {
+  width: 100%;
+  flex: 2;
+}
+.reddit_clone-coins_item_img img {
+  width: 100%;
+}
+.reddit_clone-coins_item_part p {
+  font-family: var(--font-c);
+}
+.reddit_clone-coins_section_item {
+  padding: 2rem 0;
+}
+.reddit_clone-coins_questions {
+  width: 50%;
+  margin: 4rem auto;
+}
+
+@media screen and (max-width: 800px) {
+  .reddit_clone-awards {
+    /* display: flex; */
+    /* background-color: red; */
+    /* display: none; */
+    /* display: flex; */
+    flex-direction: column;
+  }
+}

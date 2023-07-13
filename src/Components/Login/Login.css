@@ -1,0 +1,93 @@
+.reddit_clone-login {
+  width: 22rem;
+  text-align: center;
+  background-color: var(--color-bg);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  position: absolute;
+  top: 5%;
+  left: 37%;
+  pointer-events: all;
+  z-index: 400;
+}
+.reddit_clone-login_close {
+  align-items: end;
+  text-align: end;
+}
+.reddit_clone-login_close button {
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  background-color: var(--color-bg);
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.reddit_clone-login_container {
+  padding: 3rem 2rem;
+}
+.reddit_clone-login_container button,
+.reddit_clone-login_container input {
+  border: none;
+  background-color: var(--color-light);
+  font-family: var(--font-c);
+  color: var(--color-text);
+}
+.reddit_clone-login a {
+  color: var(--color-a);
+  font-family: var(--font-c);
+}
+.reddit_clone-login_heading h3 {
+  text-align: start;
+  font-family: var(--font-c);
+  color: var(--color-text);
+}
+.reddit_clone-login_heading a {
+  text-decoration: none;
+}
+.reddit_clone-login p {
+  font-size: 0.9rem;
+  font-family: var(--font-c);
+  color: var(--color-text);
+}
+.reddit_clone-login_shortcut {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--font-c);
+  /* margin: 1rem; */
+}
+.reddit_clone-login_shortcut button {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.reddit_clone-login_input input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border-radius: 1.5rem;
+  width: 100%;
+  font-family: var(--font-c);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.reddit_clone-login_input button {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border-radius: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: var(--color-orgred);
+  font-weight: bold;
+  color: var(--color-bg);
+  font-family: var(--font-c);
+}

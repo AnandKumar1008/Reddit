@@ -1,0 +1,178 @@
+.reddit_clone-premium_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.reddit_clone-premium {
+  width: 100%;
+}
+.reddit_clone-premium img {
+  max-width: 100%;
+}
+.reddit_premium_heading h1 {
+  text-align: center;
+  font-family: var(--font-c);
+  color: var(--color-text);
+  margin: 2rem 0;
+}
+.reddit_clone-premium_grid {
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* display: flex;
+  flex-direction: row; */
+  /* width */
+  gap: 1rem;
+  color: var(--color-text);
+  /* border: 1px solid var(--color-border); */
+  font-family: var(--font-c);
+  /* grid-auto-rows: 100px; */
+  /* align-items: center; */
+  /* grid-column-end: span 2; */
+}
+.reddit_clone-premium_grid_item {
+  background-color: var(--color-inp);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-text);
+  font-family: var(--font-c);
+  justify-content: center;
+  /* width: 50%; */
+}
+.reddit_clone-premium_grid_item h4 {
+  text-align: center;
+  color: var(--color-text);
+}
+.reddit_clone-premium_button {
+  margin: 2rem auto;
+  /* padding: 1rem; */
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  width: 45%;
+}
+.reddit_clone-premium_button button {
+  padding: 1rem;
+  border-radius: 2rem;
+  /* width: 15rem; */
+  width: 100%;
+  font-family: var(--font-c);
+  cursor: pointer;
+  /* font-size: 1.1rem; */
+  /* color: var(--color-text); */
+}
+.reddit_clone-premium_button_b1 {
+  border: 1px solid var(--color-orgred);
+  color: var(--color-orgred);
+  /* padding: 1rem; */
+}
+.reddit_clone-premium_button_b2 {
+  background-color: var(--color-orgred);
+  border: none;
+  color: var(--color-bg);
+}
+.reddit_clone-premium_button_b2 span {
+  background-color: var(--color-background);
+  padding: 0.5rem;
+  border-radius: 2rem;
+  color: var(--color-orgred);
+  font-weight: bold;
+  /* nowrap; */
+  white-space: nowrap;
+  /* color: var(--color-); */
+}
+.reddit_clone-premium_text {
+  text-align: center;
+  width: 40%;
+  margin: 2rem auto;
+  font-family: var(--font-c);
+}
+
+.reddit_clone-premium_text button {
+  background-color: var(--color-background);
+  font-family: var(--font-c);
+  margin: 2rem;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.reddit_clone-premium_text button:hover {
+  cursor: pointer;
+  background-color: var(--color-inp);
+  padding: 0 0.5rem;
+  border-radius: 1rem;
+}
+.reddit_clone-premium_footer {
+  background-color: var(--color-footer);
+}
+.reddit_clone-premium_footer_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-background);
+  font-family: var(--font-c);
+  width: 50%;
+  padding: 3rem;
+  margin: 0rem auto;
+  /* border: 2px solid red; */
+}
+.reddit_clone-premium_footer_items {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-c);
+
+  min-height: 2rem;
+  /* background-color: var(--color-background); */
+}
+.reddit_clone-premium_footer_items p {
+  margin: 1rem 0;
+  cursor: pointer;
+}
+.reddit_clone-premium_copyright {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-footertext);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  font-family: var(--font-c);
+}
+.reddit_clone-premium_copyright p {
+  /* text-decoration: underline; */
+  border-bottom: 1px solid var(--color-footertext);
+  cursor: pointer;
+}
+.reddit_clone-premium_icons {
+  font-size: 4rem;
+  size: 4rem;
+  color: var(--color-orgred);
+}
+.reddit_clone-premium_grid img {
+  max-width: 100%;
+  max-height: 4rem;
+  border-radius: 1rem;
+}
+@media screen and (max-width: 900px) {
+  .reddit_clone-premium_grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .reddit_clone-premium_grid div:nth-of-type(5) {
+    display: none;
+  }
+  .reddit_clone-premium_grid div:nth-of-type(8) {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  .reddit_clone-premium_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

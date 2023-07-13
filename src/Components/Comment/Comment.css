@@ -1,0 +1,170 @@
+.reddit_clone-comment_container {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding-top: 3rem;
+}
+.reddit_clone-comment_cover {
+  background-color: var(--color-comment-bg);
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.reddit_clone-comment_close {
+  background-color: var(--color-bg);
+  text-align: center;
+  color: var(--color-bg);
+  display: flex;
+  flex-direction: row;
+  font-family: var(--font-c);
+  width: 80%;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 1rem;
+  color: var(--color-text);
+}
+.reddit_clone-comment_close p {
+  font-family: var(--font-c);
+}
+.reddit_clone-comment_close_icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.reddit_clone-comment {
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  font-family: var(--font-c);
+  width: 60%;
+  margin: 4rem auto;
+  color: var(--color-text);
+}
+.reddit_clone-comment_items {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: start;
+  gap: 0.5rem;
+}
+.reddit_clone-comment_items h3 {
+  font-family: var(--font-c);
+  /* text-align: start; */
+}
+.reddit_clone-comment_items p {
+  font-family: var(--font-c);
+}
+.reddit_clone-comment_user p {
+  font-family: var(--font-c);
+}
+.reddit_clone-comment_post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--color-text);
+}
+.reddit_clone-comment_post p {
+  color: var(--color-text);
+  margin: 1rem 0;
+}
+.reddit_clone-comment_btn button {
+  /* color: red; */
+  background-color: var(--color-red);
+  border: none;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: var(--color-bg);
+  font-family: var(--font-c);
+}
+.reddit_clone-comment_area span {
+  color: var(--color-red);
+}
+
+.reddit_clone-comment_area textArea {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-c);
+  font-size: 1.1rem;
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  position: relative;
+  font-weight: 400;
+  /* max-width: 100%; */
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  width: 100%;
+}
+.reddit_clone-comment_area p {
+  font-family: var(--font-c);
+}
+.reddit_clone-comment_btn {
+  background-color: var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0.5rem;
+  background-color: var(--color-inp);
+  width: 100%;
+  transform: translate(0, -100%);
+  border: 1px solid var(--color-inp);
+}
+.reddit_clone-post_comments {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.reddit_clone-post_comments button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: space-around;
+}
+.reddit_clone-comment_btn p {
+  background-color: var(--color-red);
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+  color: var(--color-text);
+}
+.reddit_clone-comment_post h3 {
+  /* text-align: center; */
+  color: var(--color-text);
+}
+.reddit_clone-comment_item {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  padding: 1rem;
+  flex-direction: row;
+  background-color: var(--color-inp);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.reddit_clone-coment_close_X {
+  cursor: pointer;
+}
+.reddit_clone-comment_past_comment {
+  margin-bottom: 7rem;
+}
+.reddit_clone-comment_user {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: var(--color-text);
+}
+@media screen and (max-width: 1200px) {
+  .reddit_clone-comment {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .reddit_clone-comment {
+    width: 95%;
+  }
+}

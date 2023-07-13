@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400&family=Signika+Negative:wght@300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Signika Negative", sans-serif;
+}
+.dark-theme {
+  --font-a: "Bebas Neue", sans-serif;
+  --font-b: "Montserrat", sans-serif;
+  --font-c: "Signika Negative", sans-serif;
+  /* --color-bg: #1a1a1b; */
+  --color-bg: #1b1c1b;
+  --color-border: #343536;
+  /* --color-inp: #606c5d; */
+  --color-inp: #1b1c1b;
+  /* --color-a: #bfccb5; */
+  --color-a: #4a515a;
+  --color-background: black;
+  --color-text: white;
+  --color-orgred: orangered;
+  --color-red: red;
+}
+.light-theme {
+  --font-a: "Bebas Neue", sans-serif;
+  --font-b: "Montserrat", sans-serif;
+  --font-c: "Signika Negative", sans-serif;
+  /* background-color: #dae0e6; */
+  --color-background: #dae0e6;
+  --color-bg: white;
+  --color-text: #0c0c0c;
+  --color-light: #d7dadc;
+  --color-bac: #ffffff;
+  --color-canvas: #dae0e6;
+  --color-a: #0079ff;
+  --color-a-light: #66b3ff;
+  /* --color-border: #e1ecc8; */
+  --color-lightDark: #474748;
+  --color-inp: #ecf8f9;
+  --color-comment-bg: #bbbdbf;
+  --color-orgred: orangered;
+  --color-red: red;
+  --color-createpost-hover: #606c5d;
+  --color-rightsection-footer: #292727;
+  --color-footer: #0c3744;
+  --color-footertext: white;
+  --color-msg-header: #068fff;
+  --color-menu-hover: #dae0e6;
+  --color-border: #edeff1;
+  --color-border-bold: #c5c8cc;
+  --color-text-light: #8b9a8f;
+  --color-post: #0079ff;
+}
+
+:root {
+  /* background-color:var(); */
+}
+input:focus {
+  outline: 1px solid var(--color-lightDark);
+}
+textarea:focus {
+  outline: 1px solid var(--color-lightDark);
+}

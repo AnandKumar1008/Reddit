@@ -1,0 +1,71 @@
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.reddit_clone-app {
+  width: 100%;
+}
+.reddit_clone-app_create_post {
+  width: 100%;
+  margin: 4rem 0;
+}
+
+.reddit_clone-app_pseudo {
+  width: 18%;
+}
+.reddit_clone-home_section {
+  display: flex;
+  flex-direction: row;
+  width: 68%;
+  margin: 0 auto;
+  gap: 1rem;
+}
+.reddit_clone-app_total_post_comp {
+  align-items: center;
+  flex: 2;
+  width: 100%;
+}
+.reddit_clone-app_add_post {
+  width: 100%;
+  margin-top: 4rem;
+}
+.reddit_clone-app_right_section {
+  flex: 1;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .reddit_clone-app_fixed {
+    display: none;
+  }
+
+  .reddit_clone-home_section {
+    width: 80%;
+  }
+  .reddit_clone-app_pseudo {
+    display: none;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .reddit_clone-app_fixed {
+    visibility: hidden;
+  }
+  .reddit_clone-home_section {
+    width: 90%;
+  }
+  .reddit_clone-app_right_section {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  .reddit_clone-home_section {
+    width: 100%;
+  }
+}

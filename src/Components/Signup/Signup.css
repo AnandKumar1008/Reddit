@@ -1,0 +1,91 @@
+.reddit_clone-signup {
+  width: 22rem;
+  text-align: center;
+  background-color: var(--color-bg);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  position: absolute;
+  top: 10%;
+  left: 37%;
+  pointer-events: all;
+  font-family: var(--font-c);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.reddit_clone-signup_close {
+  align-items: end;
+  text-align: end;
+}
+.reddit_clone-signup_close button {
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  background-color: var(--color-bg);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-c);
+  color: var(--color-text);
+}
+
+.reddit_clone-signup_container {
+  padding: 3rem 2rem;
+}
+.reddit_clone-signup_container button,
+.reddit_clone-signup_container input {
+  border: none;
+  background-color: var(--color-light);
+  font-family: var(--font-c);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.reddit_clone-signup a {
+  color: var(--color-a);
+}
+.reddit_clone-signup_heading h3 {
+  text-align: start;
+  font-family: var(--font-c);
+}
+.reddit_clone-signup_heading a {
+  text-decoration: none;
+  font-family: var(--font-c);
+}
+.reddit_clone-signup p {
+  font-size: 0.9rem;
+  font-family: var(--font-c);
+}
+.reddit_clone-signup_shortcut {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* margin: 1rem; */
+}
+.reddit_clone-signup_shortcut button {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  font-family: var(--font-c);
+}
+.reddit_clone-signup_input input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border-radius: 1.5rem;
+  width: 100%;
+  font-family: var(--font-c);
+}
+.reddit_clone-signup_input button {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border-radius: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: var(--color-orgred);
+  font-weight: bold;
+  color: var(--color-bg);
+  font-family: var(--font-c);
+}

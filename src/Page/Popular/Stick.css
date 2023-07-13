@@ -1,0 +1,42 @@
+.reddit_clone-popular_stick {
+  background-color: var(--color-bg);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--color-border);
+}
+.reddit_clone-popular_stick select {
+  border: none;
+}
+.reddit_clone-popular_stick_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-a);
+  font-family: var(--font-c);
+  background-color: var(--color-inp);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+.reddit_clone-popular_stick_item p {
+  font-family: var(--font-c);
+  font-weight: bold;
+}
+.reddit_clone-popular_stick_item select {
+  font-family: var(--font-c);
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  font-weight: bold;
+  background-color: var(--color-inp);
+}
+.reddit_clone-popular_stick_item select:hover {
+  border: none;
+}
