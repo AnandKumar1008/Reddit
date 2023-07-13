@@ -62,13 +62,6 @@ const Home = () => {
       setLogin(true);
       return;
     }
-    // const reddit = JSON.parse(localStorage.getItem("reddit_clone"));
-    // if (reddit?.length > 0) {
-    //   setLogin(true);
-    //   setUserName(reddit[0]?.username);
-    // }
-
-    //  document.querySelector(".reddit_clone-nav_option")?.style.position = "fixed";
   }, []);
 
   return (

@@ -185,6 +185,8 @@ const Nav = () => {
     setNavMenu,
     setNewPost,
   } = useContext(MyContext);
+  const optionRef = useRef();
+
   useEffect(() => {
     const w = document.querySelector(".reddit_clone-nav_menu_btn").offsetWidth;
     setNavMenuWidth(w);
@@ -196,7 +198,16 @@ const Nav = () => {
       setWindowWidth(parseFloat(window.innerWidth) > 1200);
     };
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const handleClickOutside = (e) => {
+      if (optionRef.current && !optionRef.current.contains(e.target)) {
+        setOption(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
   const handleHover = () => {
     setHover(!hover);
@@ -290,6 +301,7 @@ const Nav = () => {
             <div
               className="reddit_Clone-nav_before_login"
               onClick={() => setOption((p) => !p)}
+              ref={optionRef}
             >
               <RiContactsLine className="reddit_clone-contact_icon" />
               <BsChevronDown />
