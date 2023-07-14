@@ -45,6 +45,7 @@ const App = () => {
   const [isPopularPage, setIsPopularPage] = useState(false);
   const [menu, setMenu] = useState(true);
   const [navMenu, setNavMenu] = useState(arr[0]);
+  const [apiPosts, setApiPosts] = useState();
   const over_lay = {
     position: "fixed",
     top: "0",
@@ -87,7 +88,6 @@ const App = () => {
           setUserPhoto,
           loading,
           setLoading,
-
           isAllPage,
           setIsAllPage,
           isPopularPage,
@@ -97,6 +97,8 @@ const App = () => {
           setMenu,
           navMenu,
           setNavMenu,
+          apiPosts,
+          setApiPosts,
         }}
       >
         <div className="reddit_clone-app_fixed"></div>

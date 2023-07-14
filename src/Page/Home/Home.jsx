@@ -20,14 +20,10 @@ const Home = () => {
     setUpdate,
     login,
     setLogin,
-    theme,
-    setTheme,
-    overlay,
-    setOverlay,
+
     newPost,
     setNewPost,
     showForm,
-    setShowForm,
     userName,
     setUserName,
     postItem,
@@ -55,6 +51,16 @@ const Home = () => {
     };
     fireBaseApi();
     // const reddit
+
+    const redditApi = async () => {
+      console.log("first");
+      const response = await fetch(
+        "https://www.reddit.com/r/funny/top.json?limit=20"
+      );
+      const data = await response.json();
+      console.log(data.data.children);
+    };
+    redditApi();
     const user = JSON.parse(localStorage.getItem("reddit_google"));
     if (user?.userName) {
       setUserName(user.userName);

@@ -30,6 +30,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { BsArrowUpRightCircle } from "react-icons/bs";
 import NavMenu from "../NavMenu/NavMenu.jsx";
 import { BsArrowBarLeft } from "react-icons/bs";
+import { arr } from "../NavMenuArray";
 import SimpleListMenu from "../SimpleListMenu";
 const style = {
   border: "1px solid var(--color-border)",
@@ -87,7 +88,7 @@ const NavIcon = ({ userName, option, setOption }) => {
   // const {userName}=props;
   const navigate = useNavigate();
   const optionRef = useRef();
-  const { isAllPage, setISAllPage } = useContext(MyContext);
+  const { isAllPage, setISAllPage, setNavMenu } = useContext(MyContext);
 
   const { userPhoto, setNewPost } = useContext(MyContext);
   useEffect(() => {
@@ -107,18 +108,30 @@ const NavIcon = ({ userName, option, setOption }) => {
   return (
     <div className="reddit_clone-nav_icons">
       <div className="reddit_clone-nav_icons_item">
-        <button onClick={() => navigate("/messages")}>
+        <button
+          onClick={() => {
+            navigate("/messages");
+            setNavMenu(arr[4]);
+          }}
+        >
           <AiOutlineMessage />
         </button>
         <button
           onClick={() => {
             navigate("/");
+            setNavMenu(arr[5]);
+
             setNewPost(true);
           }}
         >
           <AiOutlinePlus />{" "}
         </button>
-        <button onClick={() => navigate("/notification")}>
+        <button
+          onClick={() => {
+            navigate("/notification");
+            setNavMenu(arr[6]);
+          }}
+        >
           <IoIosNotificationsOutline />
         </button>
 
@@ -209,9 +222,7 @@ const Nav = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const handleHover = () => {
-    setHover(!hover);
-  };
+
   const handleMouseIn = () => {
     if (!menu) {
       setBorder(style);
@@ -271,16 +282,22 @@ const Nav = () => {
             <input type="text" placeholder="🔍 Search Reddit" />
           </div>
           {login && (
-            <div className="react_clone-mid_icons">
+            <div className="reddit_clone-mid_icons">
               <button
                 onClick={() => {
                   navigate("/popular");
+                  setNavMenu(arr[1]);
                   setIsAllPage(false);
                 }}
               >
                 <BsArrowUpRightCircle />{" "}
               </button>
-              <button onClick={() => navigate("/coins")}>
+              <button
+                onClick={() => {
+                  navigate("/coins");
+                  setNavMenu(arr[7]);
+                }}
+              >
                 <CiCoinInsert />{" "}
               </button>
             </div>

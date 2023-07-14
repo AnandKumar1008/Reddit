@@ -104,7 +104,7 @@ export const initialPosts = [
     email: "Carmen_Keeling@caroline.title",
     image:
       "https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    vote: `${Math.ceil(Math.random() * 100)}`,
+
     textArea:
       "voluptate iusto quis nobis reprehenderit ipsum amet nulla\nquia quas dolores velit et non\naut quia necessitatibus\nnostrum quaerat nulla et accusamus nisi facilis",
   },

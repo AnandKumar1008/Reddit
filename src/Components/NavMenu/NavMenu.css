@@ -12,6 +12,7 @@
   overflow: auto;
   border: 1px solid var(--color-border-bold);
   border-top: none;
+  padding-bottom: 1rem;
 }
 
 .reddit_clone-nav_menu_item button {

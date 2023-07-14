@@ -1,19 +1,22 @@
 .reddit_clone-post {
   display: flex;
   flex-direction: row;
-  /* align-items: start; */
   justify-content: space-between;
   background-color: var(--color-bg);
   border: 2px solid var(--color-border);
   margin-bottom: 0.5rem;
   border-radius: 0.3rem;
   color: var(--color-text);
-  /* max-height: 120vh; */
   max-height: 130vh;
-  /* height: 30rem; */
   cursor: pointer;
 }
-
+.reddit_clone-post_video_player img {
+  min-height: 20rem;
+}
+.reddit_clone-post_video_player video {
+  max-width: 100%;
+  max-height: 80vh;
+}
 .reddit_clone-post_title p {
   font-family: var(--font-c);
 }

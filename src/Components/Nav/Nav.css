@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   border: none;
   padding: 0.25rem;
   font-size: 1.1rem;
@@ -28,6 +29,11 @@
 }
 
 .reddit_clone-nav_menu_btn button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
   border: none;
   background-color: var(--color-bg);
   font-size: 1.1rem;
@@ -106,7 +112,7 @@
 
   /* background-color: red; */
 }
-.react_clone-mid_icons {
+.reddit_clone-mid_icons {
   flex: 1;
   display: flex;
   align-items: center;
@@ -114,9 +120,13 @@
   justify-content: space-around;
   border-right: 2px solid var(--color-border-bold);
 }
-.react_clone-mid_icons button {
+.reddit_clone-mid_icons button {
   font-size: 1.5rem;
   /* padding: 0.5rem 1rem; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5rem;
   width: 3rem;
   height: 2rem;
@@ -124,7 +134,10 @@
   border: none;
   background-color: var(--color-bg);
 }
-.react_clone-mid_icons button:hover {
+.reddit_clone-mid_icons button:nth-of-type(2) {
+  font-size: 2rem;
+}
+.reddit_clone-mid_icons button:hover {
   background-color: var(--color-border-bold);
 }
 .reddit_clone-nav_icons_item {

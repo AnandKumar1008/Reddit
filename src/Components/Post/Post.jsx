@@ -15,7 +15,7 @@ import { TbBoxPadding } from "react-icons/tb";
 import { FaUserAstronaut } from "react-icons/fa";
 import UserImage from "../UserImage";
 import { GiAlienSkull } from "react-icons/gi";
-export const Vote = ({ initialVote }) => {
+export const Vote = ({ initialVote = 0 }) => {
   const [vote, setVote] = useState(parseInt(initialVote));
   const { login } = useContext(MyContext);
   const [oneVote, setOneVote] = useState({
@@ -57,7 +57,8 @@ export const Vote = ({ initialVote }) => {
           style={vote == val + 1 ? { color: "var(--color-orgred)" } : {}}
         />
 
-        <p>{vote}</p>
+        {vote < 1000 && <p>{vote}</p>}
+        {vote >= 1000 && <p> {Math.ceil(vote / 100) / 10}k</p>}
         <ImArrowDown
           className="reddit_clone-arrow_down"
           onClick={handleDown}
@@ -68,6 +69,30 @@ export const Vote = ({ initialVote }) => {
     </div>
   );
 };
+// import React, { useState } from 'react';
+
+function VideoPlayer(props) {
+  console.log(props);
+  const [playing, setPlaying] = useState(true);
+
+  function handleClick(e) {
+    setPlaying(true);
+    e.stopPropagation();
+  }
+
+  return (
+    <div onClick={handleClick} className="reddit_clone-post_video_player">
+      {playing ? (
+        <video src={props.url} controls autoplay />
+      ) : (
+        <img src={props.thumbnail} alt="Video thumbnail" />
+      )}
+    </div>
+  );
+}
+
+// export default VideoPlayer;
+
 const Post = (props) => {
   const navigate = useNavigate();
   const { login, setId, allComment, setPostItem, userName, userPhoto } =
@@ -87,7 +112,7 @@ const Post = (props) => {
   return (
     <div className="reddit_clone-post" id={props.id} onClick={handleComment}>
       <div className="reddit_clone-post_vote_div">
-        <Vote initialVote={props.vote} />
+        <Vote initialVote={props?.vote} />
         {/* <div className="reddit_clone-post_vote_check">A </div> */}
       </div>
       <div className="reddit_clone-post_data">
@@ -102,11 +127,18 @@ const Post = (props) => {
             {props.userName ? props.userName : "Reddit Items"}
           </p>
         </div>
-        <h3>{props.title}</h3>
+        <h3 style={{ color: "var(--color-rightsection-footer)" }}>
+          {props.title}
+        </h3>
         <hr />
         {props?.image && (
           <div className="reddit_clone-post_image">
             <img src={props?.image} alt="" style={{ maxWidth: "100%" }} />
+          </div>
+        )}
+        {props?.video_url && (
+          <div className="reddit_clone-post_video">
+            <VideoPlayer url={props?.video_url} thumbnail={props?.thumbnail} />
           </div>
         )}
         <p className="reddit_clone-post_textArea">{props.textArea}</p>

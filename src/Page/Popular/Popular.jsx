@@ -18,7 +18,22 @@ import img2 from "../../Components/Image/customapp.jpg";
 import img3 from "../../Components/Image/coins.jpg";
 import img4 from "../../Components/Image/lounge.jpg";
 import Stick from "./Stick";
-
+const crr = [
+  "r/funny",
+  "r/gifs",
+  "r/pics",
+  "r/videos",
+  "r/aww",
+  "r/worldnews",
+  "r/science",
+  "r/gaming",
+  "r/movies",
+  "r/music",
+];
+const subreddit = "all";
+const rand = "https://www.reddit.com/r/random/.json?limit=30";
+const randomUrl =
+  "https://www.reddit.com/r/" + subreddit + "/random.json?limit=30";
 const over_lay = {
   position: "fixed",
   top: "0",
@@ -41,6 +56,8 @@ const Popular = () => {
     setLoading,
     isAllPage,
     menu,
+    apiposts,
+    setApiPosts,
   } = useContext(MyContext);
 
   useEffect(() => {
@@ -54,20 +71,47 @@ const Popular = () => {
       setUpdate(Object.values(data || {}).reverse());
       setLoading("");
     };
-    fireBaseApi();
-    const user = JSON.parse(localStorage.getItem("reddit_google"));
-    if (user?.userName) {
-      setUserName(user.userName);
-      setUserPhoto(user.userPhoto);
-      setLogin(true);
-      return;
-    }
-    const reddit = JSON.parse(localStorage.getItem("reddit_clone"));
-    if (reddit?.length > 0) {
-      setLogin(true);
-      setUserName(reddit[0]?.username);
-    }
-  }, []);
+    const redditApi = async () => {
+      const response = await fetch(
+        "https://www.reddit.com/r/all/top.json?limit=20"
+      );
+      // "https://www.reddit.com/r/all/top.json?limit=20"
+      const data = await response.json();
+      console.log(data);
+      console.log(data?.data?.children);
+      const arr = data?.data?.children;
+      const posts = [];
+      arr?.forEach((e, i) => {
+        posts.push({
+          userPhoto: e.data?.photo,
+          userName: e.data?.author,
+          key: e.data?.id,
+          id: e.data?.id,
+          title: e.data?.title,
+          image: e.data?.url,
+          vote: e.data?.ups,
+          textArea: e.data?.textArea,
+          thumbnail: e.data?.thumbnail,
+          video_url: e.data?.media?.reddit_video?.fallback_url,
+        });
+      }, []);
+      setApiPosts(posts);
+    };
+    redditApi();
+    // fireBaseApi();
+    // const user = JSON.parse(localStorage.getItem("reddit_google"));
+    // if (user?.userName) {
+    //   setUserName(user.userName);
+    //   setUserPhoto(user.userPhoto);
+    //   setLogin(true);
+    //   return;
+    // }
+    // const reddit = JSON.parse(localStorage.getItem("reddit_clone"));
+    // if (reddit?.length > 0) {
+    //   setLogin(true);
+    //   setUserName(reddit[0]?.username);
+    // }
+  });
 
   return (
     <div
