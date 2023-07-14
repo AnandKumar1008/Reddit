@@ -1,14 +1,26 @@
 .reddit_clone_comimg_page {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
-  /* background-color: var(--color-orgred); */
+  /* background-image: url("../../Components/Image/c.webp"); */
+  background-repeat: no-repeat;
+  background-position: center;
+
   align-items: center;
   justify-content: center;
+  /* width: 100%; */
+  margin: 0 auto;
   color: var(--color-a);
   font-family: var(--font-c);
   font-weight: bold;
+  margin-top: 3rem;
 }
 .reddit_clone_comimg_page p {
   font-family: var(--font-c);
+}
+.reddit_clone-coming_page_pseudo {
+  width: 18%;
+}
+.reddit_clone_comimg_page img {
+  border-radius: 1rem;
 }
