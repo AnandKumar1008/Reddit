@@ -345,6 +345,9 @@
   .reddit_clone-nav_menu_btn button span {
     display: none;
   }
+  .reddit_clone-nav_reddit_name p {
+    display: none;
+  }
   /* .reddit_clone-nav_icon span {
     display: none;
   } */
