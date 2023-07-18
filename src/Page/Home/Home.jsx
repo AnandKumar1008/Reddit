@@ -40,7 +40,7 @@ const Home = () => {
       setUpdate(Object.values(data || {}).reverse());
       setLoading("");
     };
-    // fireBaseApi();
+    fireBaseApi();
     // const reddit
 
     const redditApi = async () => {
