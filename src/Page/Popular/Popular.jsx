@@ -73,7 +73,7 @@ const Popular = () => {
     };
     const redditApi = async () => {
       const response = await fetch(
-        "https://www.reddit.com/r/all/top.json?limit=20"
+        "https://www.reddit.com/r/all/top.json?limit=30"
       );
       // "https://www.reddit.com/r/all/top.json?limit=20"
       const data = await response.json();
@@ -94,7 +94,7 @@ const Popular = () => {
           thumbnail: e.data?.thumbnail,
           video_url: e.data?.media?.reddit_video?.fallback_url,
         });
-      }, []);
+      });
       setApiPosts(posts);
     };
     redditApi();
@@ -111,7 +111,7 @@ const Popular = () => {
     //   setLogin(true);
     //   setUserName(reddit[0]?.username);
     // }
-  });
+  }, []);
 
   return (
     <div

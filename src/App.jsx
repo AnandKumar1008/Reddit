@@ -32,7 +32,8 @@ const App = () => {
   const [update, setUpdate] = useState([]);
   const [login, setLogin] = useState(false);
   // const [theme, setTheme] = useState(darkTheme);
-  const [overlay, setOverlay] = useState("");
+  // const [overlay, setOverlay] = useState("");
+  // const [isHome,setIsHome]
   const [newPost, setNewPost] = useState(false);
   const [showForm, setShowForm] = useState("none");
   const [userName, setUserName] = useState("");
@@ -45,7 +46,7 @@ const App = () => {
   const [isPopularPage, setIsPopularPage] = useState(false);
   const [menu, setMenu] = useState(window.innerWidth > 1200);
   const [navMenu, setNavMenu] = useState(arr[0]);
-  const [apiPosts, setApiPosts] = useState();
+  const [apiPosts, setApiPosts] = useState([]);
   const over_lay = {
     position: "fixed",
     top: "0",
@@ -60,7 +61,7 @@ const App = () => {
     document.body.className = theme;
     document.body.style.backgroundColor = "var(--color-background)";
     const current_user = localStorage.getItem("current_user");
-    if (current_user) setUserName(JSON.parse(current));
+    if (current_user) setUserName(JSON.parse(current_user));
   }, [theme]);
 
   return (

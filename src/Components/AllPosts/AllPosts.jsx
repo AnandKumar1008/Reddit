@@ -3,26 +3,34 @@ import { MyContext } from "../../App";
 import Post from "../Post/Post";
 import "./Allposts.css";
 import { initialPosts } from "../initialPosts";
+import { useLocation } from "react-router-dom";
 const AllPosts = () => {
   const { update, loading, setLoading, isAllPage, apiPosts } =
     useContext(MyContext);
+  const location = useLocation();
 
   return (
     <div className="reddit_clone-allposts">
-      {apiPosts?.map((post) => (
-        <Post
-          userName={post?.userName}
-          userPhoto={post?.userPhoto}
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          vote={post.vote}
-          image={post?.image}
-          textArea={post?.textArea}
-          thumbnail={post?.thumbnail}
-          video_url={post?.video_url}
-        />
-      ))}
+      {location.pathname == "/" ? (
+        false
+      ) : (
+        <div>
+          {apiPosts?.map((post) => (
+            <Post
+              userName={post?.userName}
+              userPhoto={post?.userPhoto}
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              vote={post.vote}
+              image={post?.image}
+              textArea={post?.textArea}
+              thumbnail={post?.thumbnail}
+              video_url={post?.video_url}
+            />
+          ))}
+        </div>
+      )}
       {update.map((post) => (
         <Post
           key={post.id}

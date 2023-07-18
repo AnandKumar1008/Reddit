@@ -16,26 +16,17 @@ import Stick from "../Popular/Stick";
 
 const Home = () => {
   const {
-    update,
     setUpdate,
     login,
     setLogin,
-
     newPost,
     setNewPost,
     showForm,
-    userName,
     setUserName,
-    postItem,
-    setPostItem,
-    allComment,
-    userPhoto,
     setUserPhoto,
     setLoading,
-    loading,
     over_lay,
     menu,
-    setMenu,
   } = useContext(MyContext);
 
   useEffect(() => {
@@ -49,7 +40,7 @@ const Home = () => {
       setUpdate(Object.values(data || {}).reverse());
       setLoading("");
     };
-    fireBaseApi();
+    // fireBaseApi();
     // const reddit
 
     const redditApi = async () => {
@@ -60,7 +51,7 @@ const Home = () => {
       const data = await response.json();
       console.log(data.data.children);
     };
-    redditApi();
+    // redditApi();
     const user = JSON.parse(localStorage.getItem("reddit_google"));
     if (user?.userName) {
       setUserName(user.userName);

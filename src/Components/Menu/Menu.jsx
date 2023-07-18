@@ -24,14 +24,12 @@ const Menu = () => {
   const {
     setNewPost,
     setIsAllPage,
-    update,
-    setUpdate,
     setIsPopularPage,
-    over_lay,
     menu,
-    navMenu,
     setNavMenu,
     setMenu,
+    apiPosts,
+    setApiPosts,
   } = useContext(MyContext);
   return (
     <div
@@ -61,6 +59,8 @@ const Menu = () => {
       <button
         id="2"
         onClick={() => {
+          const arr = apiPosts;
+          setApiPosts([...arr.reverse()]);
           navigate("/popular");
           setIsAllPage(false);
           setIsPopularPage(true);
@@ -71,8 +71,8 @@ const Menu = () => {
       <button
         id="3"
         onClick={() => {
-          const arr = update;
-          setUpdate([...arr.reverse()]);
+          const arr = apiPosts;
+          setApiPosts([...arr.reverse()]);
           setIsAllPage(true);
           navigate("/popular");
         }}
