@@ -43,7 +43,7 @@ const App = () => {
   const [theme, setTheme] = useState("light-theme");
   const [isAllPage, setIsAllPage] = useState(false);
   const [isPopularPage, setIsPopularPage] = useState(false);
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(window.innerWidth > 1200);
   const [navMenu, setNavMenu] = useState(arr[0]);
   const [apiPosts, setApiPosts] = useState();
   const over_lay = {

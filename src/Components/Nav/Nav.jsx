@@ -199,7 +199,7 @@ const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
   // const navigate = useNavigate();
   const [hover, setHover] = useState(true);
-  const [windowWidth, setWindowWidth] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth > 1200);
   const [border, setBorder] = useState();
   const {
     login,
@@ -226,8 +226,8 @@ const Nav = () => {
     const handleResize = () => {
       // if (window.innerWidth < 1200) {
       // }
-      console.log(window.innerWidth);
       setMenu(parseFloat(window.innerWidth) > 1200);
+      console.log(window.innerWidth);
       setWindowWidth(parseFloat(window.innerWidth) > 1200);
     };
     window.addEventListener("resize", handleResize);
