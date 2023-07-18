@@ -32,14 +32,16 @@ import NavMenu from "../NavMenu/NavMenu.jsx";
 import { BsArrowBarLeft } from "react-icons/bs";
 import { arr } from "../NavMenuArray";
 import SimpleListMenu from "../SimpleListMenu";
+import { BsShield } from "react-icons/bs";
 const style = {
   border: "1px solid var(--color-border)",
   borderRadius: " 3px",
   cursor: "pointer",
 };
 const Option = () => {
-  const { login, setLogin, setShowForm, theme, setTheme } =
+  const { login, setLogin, setShowForm, theme, setTheme, setNavMenu } =
     useContext(MyContext);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     if (!login) {
@@ -62,17 +64,35 @@ const Option = () => {
   };
   return (
     <div className="reddit_clone-nav_option">
-      <button>
+      <button onClick={() => navigate("/comingpage")}>
         <BsQuestionLg /> Help Center
       </button>
-      <button>
+      <button onClick={() => navigate("/comingpage")}>
         <CiCircleMore /> More
       </button>
-      <button>
+      <button onClick={() => navigate("/comingpage")}>
         <FiFileText /> Terms And Policies
       </button>
-      <button>
+      <button onClick={() => navigate("/comingpage")}>
         <FcAdvertising /> Advertise on Reddit
+      </button>
+      <button
+        id="8"
+        onClick={() => {
+          navigate("/coins");
+          setNavMenu(arr[7]);
+        }}
+      >
+        <CiCoinInsert className="reddit_clone-nav_menu_icons" /> Coins
+      </button>
+      <button
+        id="9"
+        onClick={() => {
+          navigate("/premium");
+          setNavMenu(arr[8]);
+        }}
+      >
+        <BsShield className="reddit_clone-nav_menu_icons" /> Premium
       </button>
       <button onClick={handleLogin}>
         <CgLogIn /> LogIn & LogOut

@@ -3,7 +3,11 @@ import "./Rightsection.css";
 // import { GrShield } from "react-icons/gr";
 import { BsShield } from "react-icons/bs";
 import { MyContext } from "../../App";
+import { useNavigate } from "react-router-dom";
+import { arr } from "../NavMenuArray";
 const RightSectionPremium = () => {
+  const navigate = useNavigate();
+  const { setNavMenu } = useContext(MyContext);
   return (
     <section className="reddit_clone-right_section_premium">
       <div className="reddit_clone-right_section_premium_heading">
@@ -13,18 +17,35 @@ const RightSectionPremium = () => {
           <p>The Best Reddit experience, with monthly coins</p>
         </div>
       </div>
-      <button>Try Now</button>
+      <button
+        onClick={() => {
+          navigate("/premium");
+          setNavMenu(arr[8]);
+        }}
+      >
+        Try Now
+      </button>
     </section>
   );
 };
 const RightSectionCommunity = () => {
+  const navigate = useNavigate();
+  const { setNavMenu, setNewPost } = useContext(MyContext);
   return (
     <section className="reddit_clone-right_Secton_community">
       <p>
         Your Personal Reddit frontPage.Come here to check in with your favourite
         communities
       </p>
-      <button>Create Post</button>
+      <button
+        onClick={() => {
+          setNavMenu(arr[0]);
+          setNewPost(true);
+          navigate("/");
+        }}
+      >
+        Create Post
+      </button>
       <button>Create Community</button>
     </section>
   );
@@ -33,23 +54,25 @@ const RightSectionFooter = () => {
   return (
     <footer className="reddit_clone-section_right_footer">
       <div>
-        <a href="">user Agreement</a>
-        <a href="">Content Policy</a>
-        <a href="">Privacy Policy</a>
-        <a href="">Modern Code of conduct</a>
+        <p href="">user Agreement</p>
+        <p href="">Content Policy</p>
+        <p href="">Privacy Policy</p>
+        <p href="">Modern Code of conduct</p>
       </div>
       <hr />
       <div>
-        <a href="">English</a>
-        <a href="">Deutsch</a>
-        <a href="">Francais</a>
+        <p href="">English</p>
+        <p href="">Deutsch</p>
+        <p href="">Francais</p>
 
-        <a href="">Italiano</a>
-        <a href="">Espanol</a>
-        <a href="">Portuges</a>
+        <p href="">Italiano</p>
+        <p href="">Espanol</p>
+        <p href="">Portuges</p>
       </div>
       <hr />
-      <p>Reddit,Inc &copy 2023 All rights reserved</p>
+      <p className="reddit_clone-section_right_footer_p">
+        Reddit,Inc &copy 2023 All rights reserved
+      </p>
     </footer>
   );
 };

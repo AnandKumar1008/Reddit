@@ -14,7 +14,8 @@
 }
 
 .reddit_clone-nav_menu_btn {
-  width: 100%;
+  /* width: 100%; */
+  width: 16rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -345,10 +346,18 @@
   .reddit_clone-nav_menu_btn button span {
     display: none;
   }
-  .reddit_clone-nav_reddit_name p {
+  /* .reddit_clone-nav_reddit_name p {
     display: none;
-  }
+  } */
   /* .reddit_clone-nav_icon span {
     display: none;
   } */
+  .reddit_clone-nav_menu_btn {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .reddit_clone-nav_reddit_name p {
+    display: none;
+  }
 }
