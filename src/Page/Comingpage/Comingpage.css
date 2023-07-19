@@ -5,7 +5,7 @@
   /* background-image: url("../../Components/Image/c.webp"); */
   background-repeat: no-repeat;
   background-position: center;
-
+  max-width: 100%;
   align-items: center;
   justify-content: center;
   /* width: 100%; */
@@ -23,4 +23,5 @@
 }
 .reddit_clone_comimg_page img {
   border-radius: 1rem;
+  max-width: 100%;
 }

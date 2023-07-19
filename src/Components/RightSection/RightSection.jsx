@@ -80,8 +80,7 @@ const RightSection = () => {
   const [showDiv, setShowDiv] = useState(false);
   const [width, setWidth] = useState();
   const { isPopularPage, setIsPopularPage } = useContext(MyContext);
-  // const divRef = useRef();
-  // const r=useRef
+
   useEffect(() => {
     function handleScroll() {
       if (window.scrollY > 320) {
@@ -89,7 +88,6 @@ const RightSection = () => {
           ".reddit_clone-right_Secton_community"
         ).offsetWidth;
         setShowDiv(true);
-        //  const width=;
         setWidth(w);
       } else {
         setShowDiv(false);

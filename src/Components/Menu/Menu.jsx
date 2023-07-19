@@ -19,7 +19,6 @@ const darkModeStyle = {
   color: "white",
 };
 const Menu = () => {
-  // const navigate = useNavigate();
   const navigate = useNavigate();
   const {
     setNewPost,
@@ -28,8 +27,7 @@ const Menu = () => {
     menu,
     setNavMenu,
     setMenu,
-    apiPosts,
-    setApiPosts,
+    setRedditIndex,
   } = useContext(MyContext);
   return (
     <div
@@ -59,8 +57,7 @@ const Menu = () => {
       <button
         id="2"
         onClick={() => {
-          const arr = apiPosts;
-          setApiPosts([...arr.reverse()]);
+          setRedditIndex((p) => p + 1);
           navigate("/popular");
           setIsAllPage(false);
           setIsPopularPage(true);
@@ -71,9 +68,8 @@ const Menu = () => {
       <button
         id="3"
         onClick={() => {
-          const arr = apiPosts;
-          setApiPosts([...arr.reverse()]);
           setIsAllPage(true);
+          setRedditIndex((p) => p + 1);
           navigate("/popular");
         }}
       >

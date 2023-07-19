@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { MyContext } from "../../App";
-import "./Comment.css";
-import { Vote } from "../Post/Post";
-import { GoComment } from "react-icons/go";
-import { FaShare } from "react-icons/fa";
-import { BsSave } from "react-icons/bs";
-import { FaUserAstronaut } from "react-icons/fa";
+import React, { useContext, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { BsSave } from "react-icons/bs";
+import { FaShare, FaUserAstronaut } from "react-icons/fa";
+import { GoComment } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../App";
+import { Vote } from "../Post/Post";
 import UserImage from "../UserImage";
+import "./Comment.css";
 
 export const MakeComment = ({ textArea, userName }) => {
-  // console.log(textArea);
   return (
     <div className="reddit_clone-comment_item">
       <div className="reddit_clone-comment_item_avatar">
@@ -30,7 +28,7 @@ export const MakeComment = ({ textArea, userName }) => {
 };
 const Comment = () => {
   const navigate = useNavigate();
-  const { postItem, userName, id, setId, allComment, login } =
+  const { postItem, userName, id, path, allComment, login } =
     useContext(MyContext);
   const [comment, setComment] = useState(allComment[id] || []);
   const { props = {} } = postItem;
@@ -59,11 +57,11 @@ const Comment = () => {
         }}
       >
         <div className="reddit_clone-comment_close">
-          <p>{props.title}</p>
+          <p>{props?.title}</p>
           <div
             className="reddit_clone-comment_close_icon"
             onClick={() => {
-              navigate("/");
+              navigate(path || "/");
             }}
           >
             <AiOutlineClose className="reddit_clone-coment_close_X" />{" "}

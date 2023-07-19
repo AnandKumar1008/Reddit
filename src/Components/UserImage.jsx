@@ -3,9 +3,9 @@ import React from "react";
 const UserImage = (props) => {
   return (
     <img
-      src={props.src}
+      src={props?.src}
       alt=""
-      style={{ maxWidth: "2rem", maxHeight: "2rem" }}
+      style={{ borderRadius: "3px", maxWidth: "2rem", maxHeight: "2rem" }}
     />
   );
 };

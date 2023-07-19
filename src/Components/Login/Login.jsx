@@ -6,7 +6,7 @@ import { MyContext } from "../../App";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase";
 const Login = () => {
-  const { setShowForm, setLogin, setUserName, userPhoto, setUserPhoto } =
+  const { setShowForm, setLogin, setUserName, setUserPhoto } =
     useContext(MyContext);
   const [inp, setInp] = useState({
     username: "",
@@ -51,7 +51,6 @@ const Login = () => {
         setLogin(true);
         setShowForm("none");
         setUserPhoto(result.user.photoURL);
-        // console.log();
       })
       .catch((error) => {
         console.log("Error", error);

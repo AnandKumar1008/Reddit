@@ -4,8 +4,8 @@ import "./Notification.css";
 import Menu from "../Menu/Menu";
 const Notification = () => {
   return (
-    <>
-      <div className="reddit_clone-pseudo_element">
+    <div className="reddit_clone-notification_main">
+      <div className="reddit_clone-notification_pseudo_element">
         <Menu />
       </div>
       <div className="reddit_clone-notification">
@@ -36,7 +36,7 @@ const Notification = () => {
           <button>Visit r/Old_Recipies</button>
         </footer>
       </div>
-    </>
+    </div>
   );
 };
 

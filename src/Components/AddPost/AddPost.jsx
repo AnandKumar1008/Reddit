@@ -3,17 +3,13 @@ import Post from "../Post/Post";
 import "./AddPost.css";
 import { MyContext } from "../../App";
 import { FaReddit } from "react-icons/fa";
-const AddPost = ({ newPost, setNewPost }) => {
-  const { update, setUpdate } = useContext(MyContext);
+import { useNavigate } from "react-router-dom";
+const AddPost = ({ setNewPost }) => {
   const inputRef = useRef();
-  // const [upload, setUpload] = useState([]);
+  const navigate = useNavigate();
   const handleClick = () => {
-    if (inputRef.current.value.length == 0) return;
-    setUpdate([
-      <Post post={inputRef.current.value} key={update.length} />,
-      ...update,
-    ]);
-    inputRef.current.value = "";
+    navigate("/");
+    setNewPost(true);
   };
   return (
     <div className="reddit_clone-addpost section__padding">

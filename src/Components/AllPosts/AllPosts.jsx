@@ -5,8 +5,7 @@ import "./Allposts.css";
 import { initialPosts } from "../initialPosts";
 import { useLocation } from "react-router-dom";
 const AllPosts = () => {
-  const { update, loading, setLoading, isAllPage, apiPosts } =
-    useContext(MyContext);
+  const { update, apiPosts } = useContext(MyContext);
   const location = useLocation();
 
   return (

@@ -1,38 +1,28 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FaReddit } from "react-icons/fa";
-// import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import { AiFillHome } from "react-icons/ai";
-import { IoIosContact } from "react-icons/io";
-import { RiContactsLine } from "react-icons/ri";
-import { BsQrCodeScan } from "react-icons/bs";
-import { TbCircleArrowUpRightFilled } from "react-icons/tb";
-import { CiCoinInsert } from "react-icons/ci";
 import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosNotificationsOutline } from "react-icons/io";
-import "./Nav.css";
-import Login from "../Login/Login";
-import { MyContext } from "../../App";
-import Signup from "../Signup/Signup";
-import CreatePassword from "../Signup/CreatePassword";
-import { BsFillChatDotsFill } from "react-icons/bs";
+import { BsChevronDown, BsQrCodeScan } from "react-icons/bs";
+import { CgLogIn } from "react-icons/cg";
+import { CiCoinInsert } from "react-icons/ci";
 import { FcAdvertising } from "react-icons/fc";
 import { GiAlienSkull } from "react-icons/gi";
-import { BsChevronDown } from "react-icons/bs";
-import { CgLogIn } from "react-icons/cg";
-// import {FaRegRectangleList} from 'react-icons/fa'
-import { FiFileText } from "react-icons/fi";
-import { CiCircleMore } from "react-icons/ci";
-import { BsQuestionLg } from "react-icons/bs";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { BiLogIn } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { RiContactsLine } from "react-icons/ri";
+import { MyContext } from "../../App";
+import "./Nav.css";
 import { AiOutlineMessage } from "react-icons/ai";
-import { BsArrowUpRightCircle } from "react-icons/bs";
+import { BiLogIn } from "react-icons/bi";
+import {
+  BsArrowBarLeft,
+  BsArrowUpRightCircle,
+  BsQuestionLg,
+  BsShield,
+} from "react-icons/bs";
+import { CiCircleMore } from "react-icons/ci";
+import { FiFileText } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import NavMenu from "../NavMenu/NavMenu.jsx";
-import { BsArrowBarLeft } from "react-icons/bs";
 import { arr } from "../NavMenuArray";
-import SimpleListMenu from "../SimpleListMenu";
-import { BsShield } from "react-icons/bs";
 const style = {
   border: "1px solid var(--color-border)",
   borderRadius: " 3px",
@@ -46,15 +36,10 @@ const Option = () => {
   const handleLogin = () => {
     if (!login) {
       setShowForm("Login");
-      // setLogin(false);
       return;
     }
     setLogin(false);
-
-    // const arr = [];
     const obj = {};
-    // localStorage.setItem("reddit_clone", JSON.stringify(arr));
-    // localStorage.setItem('current_user',)
     localStorage.removeItem("current_user");
     localStorage.setItem("reddit_google", JSON.stringify(obj));
   };
@@ -97,18 +82,13 @@ const Option = () => {
       <button onClick={handleLogin}>
         <CgLogIn /> LogIn & LogOut
       </button>
-      {/* <button onClick={handleTheme}>
-        {theme === "light-theme" ? <MdDarkMode /> : <MdLightMode />} Theme
-      </button> */}
     </div>
   );
 };
 const NavIcon = ({ userName, option, setOption }) => {
-  // console.log(userName);
-  // const {userName}=props;
   const navigate = useNavigate();
   const optionRef = useRef();
-  const { isAllPage, setISAllPage, setNavMenu } = useContext(MyContext);
+  const { setNavMenu } = useContext(MyContext);
 
   const { userPhoto, setNewPost } = useContext(MyContext);
   useEffect(() => {
@@ -197,21 +177,15 @@ const Nav = () => {
   const navigate = useNavigate();
   const [navMenuWidth, setNavMenuWidth] = useState();
   const [showMenu, setShowMenu] = useState(false);
-  // const navigate = useNavigate();
-  const [hover, setHover] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth > 1200);
   const [border, setBorder] = useState();
   const {
     login,
-    setLogin,
-    showForm,
     setShowForm,
     theme,
     setTheme,
     userName,
-    userPhoto,
     setIsAllPage,
-    isAllPage,
     menu,
     setMenu,
     navMenu,
@@ -224,8 +198,6 @@ const Nav = () => {
     const w = document.querySelector(".reddit_clone-nav_menu_btn").offsetWidth;
     setNavMenuWidth(w);
     const handleResize = () => {
-      // if (window.innerWidth < 1200) {
-      // }
       setMenu(parseFloat(window.innerWidth) > 1200);
       console.log(window.innerWidth);
       setWindowWidth(parseFloat(window.innerWidth) > 1200);
@@ -254,9 +226,7 @@ const Nav = () => {
     }
   };
   const handleClick = () => {
-    // setLogin(true);
     setShowForm("Login");
-    // setOverlay("background-overlay");
   };
   return (
     <div className="reddit_clone-nav_fixed">
@@ -266,8 +236,8 @@ const Nav = () => {
             className="reddit_clone-nav_reddit_name"
             onClick={() => {
               navigate("/");
-              // setShowForm("none");
               setNewPost(false);
+              setNavMenu(arr[0]);
             }}
           >
             <FaReddit className="reddit_clone-nav_reddit_icon" />
@@ -293,7 +263,7 @@ const Nav = () => {
               </div>
             </button>
             {showMenu && (
-              <div>{menu ? false : <NavMenu width={navMenuWidth} />}</div>
+              <div>{menu ? <></> : <NavMenu width={navMenuWidth} />}</div>
             )}
           </div>
         </div>

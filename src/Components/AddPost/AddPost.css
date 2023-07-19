@@ -17,7 +17,6 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  /* border: none; */
 }
 .reddit_clone-addpost_input button {
   margin: 0 0.5rem;

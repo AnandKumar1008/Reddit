@@ -1,39 +1,23 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import AddPost from "../../Components/AddPost/AddPost";
-import Nav from "../../Components/Nav/Nav";
+import React, { useContext, useEffect } from "react";
 import Allposts from "../../Components/AllPosts/AllPosts";
+import Nav from "../../Components/Nav/Nav";
 // import AllPosts from "../../Components/AllPosts/AllPosts";
 import "./Popular.css";
 // export const MyContext = createContext();
-import Login from "../../Components/Login/Login";
-import Signup from "../../Components/Signup/Signup";
-import CreatePost from "../../Components/CreatePost/CreatePost";
+import { MyContext } from "../../App";
+import img3 from "../../Components/Image/coins.jpg";
+import img2 from "../../Components/Image/customapp.jpg";
+import {
+  default as img1,
+  default as img4,
+} from "../../Components/Image/lounge.jpg";
 import Menu from "../../Components/Menu/Menu";
 import RightSection from "../../Components/RightSection/RightSection";
-import CreatePassword from "../../Components/Signup/CreatePassword";
-import Post from "../../Components/Post/Post";
-import { MyContext } from "../../App";
-import img1 from "../../Components/Image/lounge.jpg";
-import img2 from "../../Components/Image/customapp.jpg";
-import img3 from "../../Components/Image/coins.jpg";
-import img4 from "../../Components/Image/lounge.jpg";
 import Stick from "./Stick";
-const crr = [
-  "r/funny",
-  "r/gifs",
-  "r/pics",
-  "r/videos",
-  "r/aww",
-  "r/worldnews",
-  "r/science",
-  "r/gaming",
-  "r/movies",
-  "r/music",
-];
+
 const subreddit = "all";
-const rand = "https://www.reddit.com/r/random/.json?limit=30";
-const randomUrl =
-  "https://www.reddit.com/r/" + subreddit + "/random.json?limit=30";
+// const rand = "https://www.reddit.com/r/random/.json?limit=30";
+// const randomUrl =  "https://www.reddit.com/r/" + subreddit + "/random.json?limit=30";
 const over_lay = {
   position: "fixed",
   top: "0",
@@ -46,39 +30,34 @@ const over_lay = {
 const Popular = () => {
   const {
     setUpdate,
-    setLogin,
-
     showForm,
 
-    setUserName,
-
-    setUserPhoto,
     setLoading,
     isAllPage,
     menu,
-    apiposts,
+    subReddit,
+    redditIndex,
     setApiPosts,
   } = useContext(MyContext);
 
   useEffect(() => {
     const fireBaseApi = async () => {
-      setLoading("Loading...");
       const response = await fetch(
         "https://redditclone-59718-default-rtdb.firebaseio.com/database.json"
       );
       const data = await response.json();
       console.log(data);
       setUpdate(Object.values(data || {}).reverse());
-      setLoading("");
     };
     const redditApi = async () => {
+      // const url = "https://www.reddit.com/r/all/top.json?limit=30";
       const response = await fetch(
-        "https://www.reddit.com/r/all/top.json?limit=30"
+        `https://www.reddit.com/r/${subReddit[redditIndex % 10]}.json`
       );
-      // "https://www.reddit.com/r/all/top.json?limit=20"
+
       const data = await response.json();
-      console.log(data);
-      console.log(data?.data?.children);
+      // console.log(data);
+      // console.log(data?.data?.children);
       const arr = data?.data?.children;
       const posts = [];
       arr?.forEach((e, i) => {
@@ -98,44 +77,20 @@ const Popular = () => {
       setApiPosts(posts);
     };
     redditApi();
-    // fireBaseApi();
-    // const user = JSON.parse(localStorage.getItem("reddit_google"));
-    // if (user?.userName) {
-    //   setUserName(user.userName);
-    //   setUserPhoto(user.userPhoto);
-    //   setLogin(true);
-    //   return;
-    // }
-    // const reddit = JSON.parse(localStorage.getItem("reddit_clone"));
-    // if (reddit?.length > 0) {
-    //   setLogin(true);
-    //   setUserName(reddit[0]?.username);
-    // }
-  }, []);
+  }, [redditIndex]);
 
   return (
     <div
       className="reddit_clone-app"
       style={showForm == "none" ? {} : over_lay}
     >
-      <div style={showForm == "none" ? {} : over_lay}>
-        {showForm == "Login" ? (
-          <Login />
-        ) : showForm == "Signup" ? (
-          <Signup />
-        ) : showForm == "create_password" ? (
-          <CreatePassword />
-        ) : (
-          false
-        )}
-      </div>
       <div className="reddit_clone-app_total_posts">
         {menu && (
           <div className="reddit_clone-popular_pseudo">
             <Menu />
           </div>
         )}
-        {/* <div className="reddit_clone-app_total_post_comp"> */}
+
         <div className="reddit_clone-popular_section">
           {isAllPage ? (
             false

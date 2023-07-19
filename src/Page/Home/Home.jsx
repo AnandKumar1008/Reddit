@@ -1,17 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import AddPost from "../../Components/AddPost/AddPost";
-import Nav from "../../Components/Nav/Nav";
 import Allposts from "../../Components/AllPosts/AllPosts";
+import Nav from "../../Components/Nav/Nav";
 import "./Home.css";
-// export const MyContext = createContext();
-import Login from "../../Components/Login/Login";
-import Signup from "../../Components/Signup/Signup";
+import { MyContext } from "../../App";
 import CreatePost from "../../Components/CreatePost/CreatePost";
 import Menu from "../../Components/Menu/Menu";
 import RightSection from "../../Components/RightSection/RightSection";
-import CreatePassword from "../../Components/Signup/CreatePassword";
-import Post from "../../Components/Post/Post";
-import { MyContext } from "../../App";
 import Stick from "../Popular/Stick";
 
 const Home = () => {
@@ -24,34 +19,21 @@ const Home = () => {
     showForm,
     setUserName,
     setUserPhoto,
-    setLoading,
     over_lay,
     menu,
   } = useContext(MyContext);
 
   useEffect(() => {
     const fireBaseApi = async () => {
-      setLoading("Loading...");
       const response = await fetch(
         "https://redditdata-3dd62-default-rtdb.firebaseio.com/database.json"
       );
       const data = await response.json();
       console.log(data);
       setUpdate(Object.values(data || {}).reverse());
-      setLoading("");
     };
-    fireBaseApi();
-    // const reddit
+    // fireBaseApi();
 
-    const redditApi = async () => {
-      console.log("first");
-      const response = await fetch(
-        "https://www.reddit.com/r/funny/top.json?limit=20"
-      );
-      const data = await response.json();
-      console.log(data.data.children);
-    };
-    // redditApi();
     const user = JSON.parse(localStorage.getItem("reddit_google"));
     if (user?.userName) {
       setUserName(user.userName);

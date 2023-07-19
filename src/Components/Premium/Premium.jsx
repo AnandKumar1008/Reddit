@@ -42,13 +42,11 @@ const Premium = () => {
             <p>Outfit your avatar with the best gear and accessories</p>
           </div>
           <div className="reddit_clone-premium_grid_item">
-            {/* <LuSofa className="reddit_clone-premium_icons" /> */}
             <img src={lounge} alt="" />
             <h4>Member lounge</h4>
             <p>Discover all the illuminati secrets in r/lounge</p>
           </div>
           <div className="reddit_clone-premium_grid_item">
-            {/* <GrAppsRounded className="reddit_clone-premium_icons" /> */}
             <img src={app} alt="" />
             <h4>Custom App Icons*</h4>
             <p>Change your app icon to something more your style</p>
@@ -58,7 +56,6 @@ const Premium = () => {
             style={{ backgroundColor: "var(--color-background)" }}
           ></div>
           <div className="reddit_clone-premium_grid_item">
-            {/* <LiaCoinsSolid className="reddit_clone-premium_icons" /> */}
             <img src={coin} alt="" />
             <h4>700 Monthly Coins</h4>
             <p>Get 700 coins a month and make it rain awards</p>
@@ -109,12 +106,9 @@ const Footer = () => {
           <p>Blog</p>
           <p>Help</p>
         </div>
-        {/* <div className="reddit_clone-premium_footer_items"></div> */}
-        {/* <hr /> */}
         <div className="reddit_clone-premium_footer_items">
           <p>Reddit Premium</p>
         </div>
-        {/* <div className="reddit_clone-premium_footer_items"></div> */}
         <div className="reddit_clone-premium_footer_items">
           <p>Facebook</p>
           <p>Twitter</p>
@@ -127,7 +121,6 @@ const Footer = () => {
         <p>User Agreement</p>
         <p>Mod Policy</p>
         <p>Reddit, Inc. © 2023. All rights reserved.</p>
-        {/* <p></p> */}
       </div>
     </footer>
   );

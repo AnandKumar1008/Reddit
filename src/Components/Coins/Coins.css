@@ -28,6 +28,9 @@
   font-family: var(--font-c);
   font-size: 1.2rem;
 }
+.reddit_clone-coinspage img {
+  max-width: 100%;
+}
 .reddit_clone-awards {
   display: flex;
   flex-direction: row;
@@ -119,10 +122,6 @@
 
 @media screen and (max-width: 800px) {
   .reddit_clone-awards {
-    /* display: flex; */
-    /* background-color: red; */
-    /* display: none; */
-    /* display: flex; */
     flex-direction: column;
   }
 }

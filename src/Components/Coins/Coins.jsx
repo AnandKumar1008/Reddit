@@ -103,7 +103,6 @@ const Coins = () => {
         <section className="reddit_clone-coins_section">
           <h1>Reddit Coins</h1>
           <div className="reddit_clone-coins_section_item">
-            {/* <CoinsItem /> */}
             {coins.map((image, i) => (
               <CoinsItem key={i} image={image} />
             ))}

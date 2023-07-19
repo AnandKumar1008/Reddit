@@ -5,8 +5,7 @@
   border-radius: 1.5rem;
   padding: 1rem;
   position: absolute;
-  top: 10%;
-  left: 37%;
+
   pointer-events: all;
   font-family: var(--font-c);
   color: var(--color-text);

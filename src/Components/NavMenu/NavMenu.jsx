@@ -30,6 +30,8 @@ const NavMenu = ({ width }) => {
     setIsPopularPage,
     over_lay,
     navMenu,
+    setMenu,
+    setRedditIndex,
     setNavMenu,
   } = useContext(MyContext);
   return (
@@ -68,9 +70,9 @@ const NavMenu = ({ width }) => {
       <button
         id="3"
         onClick={() => {
-          const arr = update;
-          setUpdate([...arr.reverse()]);
           setIsAllPage(true);
+          setRedditIndex((p) => p + 1);
+
           navigate("/popular");
         }}
       >

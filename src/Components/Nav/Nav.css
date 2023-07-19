@@ -307,9 +307,6 @@
   flex-direction: column;
   border: 1px solid var(--color-border-bold);
   border-top: none;
-  /* cursor: pointer; */
-  /* border: 1px solid var(--color-border); */
-  /* border: 2px solid red; */
 }
 
 .reddit_clone-nav_option button {
@@ -346,18 +343,24 @@
   .reddit_clone-nav_menu_btn button span {
     display: none;
   }
-  /* .reddit_clone-nav_reddit_name p {
-    display: none;
-  } */
-  /* .reddit_clone-nav_icon span {
-    display: none;
-  } */
+
   .reddit_clone-nav_menu_btn {
     width: 100%;
   }
 }
 @media screen and (max-width: 800px) {
   .reddit_clone-nav_reddit_name p {
+    display: none;
+  }
+  .reddit_clone-nav_fixed {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .reddit_clone-nav_getapp {
+    display: none;
+  }
+  .reddit_clone-nav_login {
     display: none;
   }
 }

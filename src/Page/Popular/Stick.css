@@ -8,6 +8,9 @@
   margin-bottom: 1rem;
   border: 2px solid var(--color-border);
 }
+.reddit_clone-popular_stick > * {
+  flex: 1;
+}
 .reddit_clone-popular_stick select {
   border: none;
 }
@@ -39,4 +42,16 @@
 }
 .reddit_clone-popular_stick_item select:hover {
   border: none;
+}
+@media screen and (max-width: 800px) {
+  .reddit_clone-popular_stick_item {
+    gap: 0;
+    justify-content: space-around;
+  }
+  .reddit_clone-popular_stick :nth-of-type(3) {
+    display: none;
+  }
+  .reddit_clone-popular_stick :nth-of-type(4) {
+    display: none;
+  }
 }

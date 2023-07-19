@@ -1,12 +1,12 @@
 .reddit_clone-login {
   width: 22rem;
+  /* width: 30vw; */
   text-align: center;
   background-color: var(--color-bg);
   border-radius: 1.5rem;
   padding: 1rem;
   position: absolute;
-  top: 5%;
-  left: 37%;
+
   pointer-events: all;
   z-index: 400;
 }

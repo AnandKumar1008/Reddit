@@ -4,32 +4,14 @@ import PostText from "./PostText";
 import { BsFillFileEarmarkPostFill, BsFileImage } from "react-icons/bs";
 import { HiLink } from "react-icons/hi";
 import { FaPollH } from "react-icons/fa";
-const TextArea = ({ col, row, placeholder }) => {
-  return (
-    <>
-      <textarea
-        name=""
-        id=""
-        cols={col}
-        rows={row}
-        placeholder={placeholder}
-      ></textarea>
-    </>
-  );
-};
 
-// const type=[<TextArea key={0} col={30} row={10}  placeholder={`Text (Optional)`}/>, <img key={1}/>,
-// <TextArea key={2} col={10} row={5} placeholder={`Url`}/>,<TextArea key={3}  col={30} row={10}  placeholder={`Text (Optional)`}/>];
 const makeStyle = {
   borderBottom: "2px solid var(--color-a)",
   color: "var(--color-a)",
 };
 const CreatePost = () => {
-  // const [clicked,setClicked]=useState();
   const [postType, setPosttype] = useState("post");
   const handleClick = (e) => {
-    //  setClicked(e.target);
-
     setPosttype(e.target.id);
   };
   return (
@@ -41,7 +23,6 @@ const CreatePost = () => {
         </button>
       </div>
       <div className="reddit_clone-create_post_line"></div>
-      {/* <hr style={{ backgroundColor: "var(--color-bg)" }} /> */}
       <select name="" id="" className="reddit_clone-create_post_select">
         <option value="">Choose A Community</option>
         <option value="">User</option>

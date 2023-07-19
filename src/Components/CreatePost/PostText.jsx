@@ -5,7 +5,6 @@ import "./PostText.css";
 import Post from "../Post/Post";
 import { MyContext } from "../../App";
 const ImageUpload = ({ setImg }) => {
-  // const [image, setImage] = useState();
   const handleChange = (e) => {
     setImg(URL.createObjectURL(e.target.files[0]));
   };
@@ -44,7 +43,6 @@ const PostText = (props) => {
     setInp({ ...inp, [e.target.name]: e.target.value });
   };
   const handleImage = (e) => {
-    // setImage(URL.createObjectURL(e.target.files[0]));
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
@@ -56,18 +54,16 @@ const PostText = (props) => {
     if (!login) return;
     setWait("Please Wait...");
     setUpdate([
-      // <Post
       {
         userName: userName,
         userPhoto,
-        // key: update.length,
         id: `${update.length + 1}`,
         title: inp?.title,
         image: image,
         vote: 0,
         textArea: inp?.textArea,
       },
-      // />,
+
       ...update,
     ]);
     // ******************************************************
@@ -145,7 +141,6 @@ const PostText = (props) => {
               </button>
             </div>
           ) : (
-            // </p></p>
             <div>
               <button onClick={() => inpRef.current.click()}> Upload</button>
               <input type="file" onChange={handleImage} ref={inpRef} />

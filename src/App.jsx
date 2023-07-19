@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import Home from "./Page/Home/Home.jsx";
-import { Routes, Route, json } from "react-router-dom";
+import { Routes, Route, json, useLocation } from "react-router-dom";
 import Comment from "./Components/Comment/Comment.jsx";
 import Nav from "./Components/Nav/Nav.jsx";
 import Menu from "./Components/Menu/Menu.jsx";
@@ -28,12 +28,22 @@ import CreatePassword from "./Components/Signup/CreatePassword.jsx";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
 }
+const subReddit = [
+  "funny",
+  "gifs",
+  "pics",
+  "videos",
+  "aww",
+  "worldnews",
+  "science",
+  "gaming",
+  "movies",
+  "music",
+];
 const App = () => {
   const [update, setUpdate] = useState([]);
   const [login, setLogin] = useState(false);
-  // const [theme, setTheme] = useState(darkTheme);
-  // const [overlay, setOverlay] = useState("");
-  // const [isHome,setIsHome]
+
   const [newPost, setNewPost] = useState(false);
   const [showForm, setShowForm] = useState("none");
   const [userName, setUserName] = useState("");
@@ -47,6 +57,19 @@ const App = () => {
   const [menu, setMenu] = useState(window.innerWidth > 1200);
   const [navMenu, setNavMenu] = useState(arr[0]);
   const [apiPosts, setApiPosts] = useState([]);
+  const [redditIndex, setRedditIndex] = useState(0);
+  const [path, setPath] = useState("/");
+  const location = useLocation();
+  useEffect(() => {
+    if (newPost) setNavMenu(arr[5]);
+    else if (location.pathname == "/") setNavMenu(arr[0]);
+    else if (location.pathname == "/popular") setNavMenu(arr[1]);
+    else if (isAllPage) setNavMenu(arr[2]);
+    else if (location.pathname == "/message") setNavMenu(arr[4]);
+    else if (location.pathname == "/notification") setNavMenu(arr[6]);
+    else if (location.pathname == "/coins") setNavMenu(arr[7]);
+    else if (location.pathname == "/premium") setNavMenu(arr[8]);
+  }, []);
   const over_lay = {
     position: "fixed",
     top: "0",
@@ -68,6 +91,8 @@ const App = () => {
     <div className="reddit_clone-app">
       <MyContext.Provider
         value={{
+          path,
+          setPath,
           id,
           setId,
           update,
@@ -100,13 +125,13 @@ const App = () => {
           setNavMenu,
           apiPosts,
           setApiPosts,
+          redditIndex,
+          setRedditIndex,
+          subReddit,
         }}
       >
-        <div className="reddit_clone-app_fixed"></div>
-        {/* <Menu /> */}
-
         <Routes>
-          <Route path="/Comment" element={<CommentPage />} />
+          <Route path="/comment" element={<CommentPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/premium" element={<PremiumPage />} />
           <Route path="/popular" element={<Popular />} />
@@ -116,7 +141,10 @@ const App = () => {
           <Route path="/comingpage" element={<Comingpage />} />
         </Routes>
 
-        <div style={showForm == "none" ? {} : over_lay}>
+        <div
+          className="reddit_clone-app_authentication"
+          style={showForm == "none" ? {} : over_lay}
+        >
           {showForm == "Login" ? (
             <Login />
           ) : showForm == "Signup" ? (
