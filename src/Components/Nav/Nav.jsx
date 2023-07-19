@@ -136,7 +136,7 @@ const NavIcon = ({ userName, option, setOption }) => {
         </button>
 
         <button onClick={() => navigate("/comingpage")}>
-          <FcAdvertising /> Advertise
+          <FcAdvertising /> <p>Advertise</p>
         </button>
       </div>
       <div

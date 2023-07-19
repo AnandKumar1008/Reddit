@@ -343,6 +343,9 @@
   .reddit_clone-nav_menu_btn button span {
     display: none;
   }
+  .reddit_clone-mid_icons {
+    display: none;
+  }
 
   .reddit_clone-nav_menu_btn {
     width: 100%;
@@ -362,5 +365,14 @@
   }
   .reddit_clone-nav_login {
     display: none;
+  }
+  .reddit_clone-nav_icons_item button p {
+    display: none;
+  }
+  .reddit_clone-nav_icons_item button:nth-of-type(4) {
+    width: 1.5rem;
+  }
+  .reddit_clone-nav_icons_item button {
+    width: 1.5rem;
   }
 }
