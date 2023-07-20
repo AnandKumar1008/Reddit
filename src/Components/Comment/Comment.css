@@ -52,6 +52,11 @@
   /* align-items: center; */
   justify-content: start;
   gap: 0.5rem;
+  /* border: 2px solid red; */
+}
+.reddit_clone-comment_items img {
+  max-width: 100%;
+  /* border: 2px solid blue; */
 }
 .reddit_clone-comment_items h3 {
   font-family: var(--font-c);
