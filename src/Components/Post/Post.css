@@ -10,6 +10,9 @@
   max-height: 130vh;
   cursor: pointer;
 }
+.reddit_clone-post_video_player {
+  width: 100%;
+}
 .reddit_clone-post_video_player img {
   min-height: 20rem;
 }

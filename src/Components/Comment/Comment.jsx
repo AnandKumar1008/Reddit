@@ -87,7 +87,7 @@ const Comment = () => {
               />
               <p>{props?.textArea}</p>
             </div>
-            <div className="reddit_clone-post_comments">
+            <div className="reddit_clone-comment_comment_option">
               <button>
                 <GoComment /> {allComment[id]?.length} Comments
               </button>

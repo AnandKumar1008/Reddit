@@ -16,7 +16,6 @@ const CreatePassword = () => {
     setInp({ ...inp, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
-    // inp.username
     e.preventDefault();
     if (inp.username.length <= 3 || inp.username.length > 20) {
       setError({
