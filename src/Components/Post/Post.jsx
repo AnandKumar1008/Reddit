@@ -79,9 +79,9 @@ function VideoPlayer(props) {
   return (
     <div onClick={handleClick} className="reddit_clone-post_video_player">
       {playing ? (
-        <video src={props.url} controls autoplay />
+        <video src={props?.url} controls autoplay />
       ) : (
-        <img src={props.thumbnail} alt="Video thumbnail" />
+        <img src={props?.thumbnail} alt="Video thumbnail" />
       )}
     </div>
   );

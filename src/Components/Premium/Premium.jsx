@@ -12,6 +12,10 @@ import app from "../Image/customapp.jpg";
 import premAvatar from "../Image/premiumavatar.png";
 import Menu from "../Menu/Menu";
 import { MyContext } from "../../App";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { BsFacebook } from "react-icons/bs";
+import { BiLogoInstagramAlt } from "react-icons/bi";
+import { BsWhatsapp } from "react-icons/bs";
 const Premium = () => {
   const { menu } = useContext(MyContext);
   return (
@@ -109,11 +113,20 @@ const Footer = () => {
         <div className="reddit_clone-premium_footer_items">
           <p>Reddit Premium</p>
         </div>
-        <div className="reddit_clone-premium_footer_items">
-          <p>Facebook</p>
-          <p>Twitter</p>
-          <p>Instagram</p>
-        </div>
+      </div>
+      <div className="reddit_clone-premium_footer_icons">
+        <span className="reddit_clone-facebook_icon ">
+          <BsFacebook />
+        </span>
+        <span className="reddit_clone-twitter_icon ">
+          <AiFillTwitterCircle />
+        </span>
+        <span className="reddit_clone-instagram_icon ">
+          <BiLogoInstagramAlt />
+        </span>
+        <span className="reddit_clone-whats_app">
+          <BsWhatsapp />
+        </span>
       </div>
       <div className="reddit_clone-premium_copyright">
         <p>Content Policy</p>

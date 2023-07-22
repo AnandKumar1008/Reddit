@@ -9,6 +9,7 @@
 .reddit_clone-coinspage {
   background-color: var(--color-bg);
   padding-top: 3rem;
+  /* width: 100%; */
 }
 .reddit_clone-coinspage_heading {
   display: flex;

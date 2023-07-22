@@ -63,7 +63,7 @@ const Coins = () => {
       )}
       <div
         className="reddit_clone-coinspage"
-        style={menu ? { width: "80%" } : { width: "100%" }}
+        style={menu ? { width: "82%" } : { width: "100%" }}
       >
         <img src={redditcoin} alt="" />
         <section className="reddit_clone-coinspage_heading">
