@@ -24,6 +24,7 @@ import CommentPage from "./Page/CommentPage/CommentPage.jsx";
 const allComment = JSON.parse(localStorage.getItem("reddit_comment")) || {};
 import { arr } from "./Components/NavMenuArray.jsx";
 import CreatePassword from "./Components/Signup/CreatePassword.jsx";
+import RedditQr from "./Components/RedditQr/RedditQr.jsx";
 // const localComment = JSON.parse(localStorage.getItem("reddit_comment")) || {};
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
@@ -59,6 +60,7 @@ const App = () => {
   const [apiPosts, setApiPosts] = useState([]);
   const [redditIndex, setRedditIndex] = useState(0);
   const [path, setPath] = useState("/");
+  const [qr, setQr] = useState(false);
   const location = useLocation();
   useEffect(() => {
     if (newPost) setNavMenu(arr[5]);
@@ -78,6 +80,7 @@ const App = () => {
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     pointerEvents: "none",
+    zIndex: "9999",
   };
   useEffect(() => {
     console.log(theme);
@@ -88,7 +91,10 @@ const App = () => {
   }, [theme]);
 
   return (
-    <div className="reddit_clone-app">
+    <div
+      className="reddit_clone-app"
+      style={qr ? { pointerEvents: "none", overflow: "hidden" } : {}}
+    >
       <MyContext.Provider
         value={{
           path,
@@ -128,6 +134,8 @@ const App = () => {
           redditIndex,
           setRedditIndex,
           subReddit,
+          qr,
+          setQr,
         }}
       >
         <Routes>
@@ -155,6 +163,11 @@ const App = () => {
             false
           )}
         </div>
+        {qr && (
+          <div className="reddit_clone-app_qr" style={qr ? over_lay : {}}>
+            <RedditQr />
+          </div>
+        )}
       </MyContext.Provider>
     </div>
   );

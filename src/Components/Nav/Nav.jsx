@@ -191,6 +191,7 @@ const Nav = () => {
     navMenu,
     setNavMenu,
     setNewPost,
+    setQr,
   } = useContext(MyContext);
   const optionRef = useRef();
 
@@ -298,7 +299,10 @@ const Nav = () => {
           <NavIcon userName={userName} option={option} setOption={setOption} />
         ) : (
           <div className="reddit_clone-nav_login_part">
-            <button className="reddit_clone-nav_getapp">
+            <button
+              className="reddit_clone-nav_getapp"
+              onClick={() => setQr((p) => !p)}
+            >
               {" "}
               <BsQrCodeScan /> Get App
             </button>
