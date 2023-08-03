@@ -19,15 +19,15 @@
   gap: 0.5rem;
   align-items: center;
   cursor: pointer;
-  color: var(--color-a);
+  color: var(--color-text);
   font-family: var(--font-c);
   background-color: var(--color-inp);
   padding: 0.5rem;
   border-radius: 1rem;
-  /* border: 2px solid red; */
 }
-.reddit_clone-popular_stick_item p {
+.reddit_clone-popular_stick_item a {
   font-family: var(--font-c);
+  color: var(--color-text);
   font-weight: bold;
 }
 .reddit_clone-popular_stick_item select {

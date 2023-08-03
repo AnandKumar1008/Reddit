@@ -28,6 +28,7 @@ const Menu = () => {
     setNavMenu,
     setMenu,
     setRedditIndex,
+    setFilterPost,
   } = useContext(MyContext);
   return (
     <div
@@ -49,6 +50,7 @@ const Menu = () => {
           setNewPost(false);
           navigate("/");
           setIsPopularPage(false);
+          setFilterPost([]);
         }}
       >
         {" "}

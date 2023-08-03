@@ -134,3 +134,13 @@
 .reddit_clone-post_title p {
   font-weight: bold;
 }
+@media screen and (max-width: 500px) {
+  .reddit_clone-post_comments {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+  .reddit_clone-post_comment button {
+    text-align: start;
+  }
+}

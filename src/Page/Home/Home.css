@@ -40,7 +40,8 @@
   margin-top: 4rem;
   width: 100%;
 }
-
+.reddit_clone-app_total_posts {
+}
 @media screen and (max-width: 1200px) {
   .reddit_clone-app_fixed {
     display: none;

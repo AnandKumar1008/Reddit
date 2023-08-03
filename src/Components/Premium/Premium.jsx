@@ -115,18 +115,20 @@ const Footer = () => {
         </div>
       </div>
       <div className="reddit_clone-premium_footer_icons">
-        <span className="reddit_clone-facebook_icon ">
-          <BsFacebook />
-        </span>
-        <span className="reddit_clone-twitter_icon ">
-          <AiFillTwitterCircle />
-        </span>
-        <span className="reddit_clone-instagram_icon ">
-          <BiLogoInstagramAlt />
-        </span>
-        <span className="reddit_clone-whats_app">
-          <BsWhatsapp />
-        </span>
+        <div className="reddit_clone-premium_footer_icon_div">
+          <span className="reddit_clone-facebook_icon ">
+            <BsFacebook />
+          </span>
+          <span className="reddit_clone-twitter_icon ">
+            <AiFillTwitterCircle />
+          </span>
+          <span className="reddit_clone-instagram_icon ">
+            <BiLogoInstagramAlt />
+          </span>
+          <span className="reddit_clone-whats_app">
+            <BsWhatsapp />
+          </span>
+        </div>
       </div>
       <div className="reddit_clone-premium_copyright">
         <p>Content Policy</p>

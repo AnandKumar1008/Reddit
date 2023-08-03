@@ -23,6 +23,7 @@ import { FiFileText } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import NavMenu from "../NavMenu/NavMenu.jsx";
 import { arr } from "../NavMenuArray";
+import { initialPosts } from "../initialPosts";
 const style = {
   border: "1px solid var(--color-border)",
   borderRadius: " 3px",
@@ -179,6 +180,7 @@ const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth > 1200);
   const [border, setBorder] = useState();
+
   const {
     login,
     setShowForm,
@@ -192,6 +194,13 @@ const Nav = () => {
     setNavMenu,
     setNewPost,
     setQr,
+    apiPosts,
+    setApiPosts,
+    update,
+    filterPost,
+    setFilterPost,
+    search,
+    setSearch,
   } = useContext(MyContext);
   const optionRef = useRef();
 
@@ -229,6 +238,26 @@ const Nav = () => {
   const handleClick = () => {
     setShowForm("Login");
   };
+  const handleInput = (e) => {
+    setSearch(e.target.value);
+    if (!e.target.value) {
+      setFilterPost([]);
+      return;
+    }
+    const arr = apiPosts.filter((item) =>
+      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    const brr = update.filter((item) =>
+      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    const crr = initialPosts.filter((item) =>
+      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilterPost([...arr, ...brr, ...crr]);
+    // setApiPosts(arr);
+    console.log(arr);
+    // console.log(input);
+  };
   return (
     <div className="reddit_clone-nav_fixed">
       <div className="reddit_clone-nav">
@@ -239,6 +268,7 @@ const Nav = () => {
               navigate("/");
               setNewPost(false);
               setNavMenu(arr[0]);
+              setFilterPost([]);
             }}
           >
             <FaReddit className="reddit_clone-nav_reddit_icon" />
@@ -270,7 +300,12 @@ const Nav = () => {
         </div>
         <div className="reddit_clone-nav_input">
           <div className="reddit_clone-nav_input_item">
-            <input type="text" placeholder="🔍 Search Reddit" />
+            <input
+              type="text"
+              placeholder="🔍 Search Reddit"
+              value={search}
+              onChange={handleInput}
+            />
           </div>
           {login && (
             <div className="reddit_clone-mid_icons">

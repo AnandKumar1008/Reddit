@@ -61,6 +61,8 @@ const App = () => {
   const [redditIndex, setRedditIndex] = useState(0);
   const [path, setPath] = useState("/");
   const [qr, setQr] = useState(false);
+  const [filterPost, setFilterPost] = useState([]);
+  const [search, setSearch] = useState("");
   const location = useLocation();
   useEffect(() => {
     if (newPost) setNavMenu(arr[5]);
@@ -136,6 +138,10 @@ const App = () => {
           subReddit,
           qr,
           setQr,
+          filterPost,
+          setFilterPost,
+          search,
+          setSearch,
         }}
       >
         <Routes>
