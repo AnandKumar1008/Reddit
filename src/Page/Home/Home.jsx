@@ -29,9 +29,16 @@ const Home = () => {
         "https://redditdata-3dd62-default-rtdb.firebaseio.com/database.json"
       );
       const data = await response.json();
-      setUpdate(Object.values(data || {}).reverse());
+      // console.log(data);
+      const arr = [];
+      Object.entries(data).forEach(([key, value]) =>
+        arr.push({ ...value, id: key })
+      );
+      // setUpdate(Object.values(data || {}).reverse());
+      // console.log(arr);
+      setUpdate(arr || []);
     };
-    // fireBaseApi();
+    fireBaseApi();
 
     const user = JSON.parse(localStorage.getItem("reddit_google"));
     if (user?.userName) {

@@ -240,6 +240,7 @@ const Nav = () => {
   };
   const handleInput = (e) => {
     setSearch(e.target.value);
+
     if (!e.target.value) {
       setFilterPost([]);
       return;
@@ -255,7 +256,7 @@ const Nav = () => {
     );
     setFilterPost([...arr, ...brr, ...crr]);
     // setApiPosts(arr);
-    console.log(arr);
+    console.log(filterPost);
     // console.log(input);
   };
   return (

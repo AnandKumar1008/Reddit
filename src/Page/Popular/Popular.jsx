@@ -56,7 +56,7 @@ const Popular = () => {
       );
 
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       // console.log(data?.data?.children);
       const arr = data?.data?.children;
       const posts = [];
