@@ -34,11 +34,12 @@ const Menu = () => {
     <div
       className="reddit_clone-menu"
       style={menu ? {} : { display: "none" }}
-      onClick={(e) =>
+      onClick={(e) => {
         setNavMenu((prev) =>
           e.target?.id ? arr[parseInt(e.target.id) - 1] : prev
-        )
-      }
+        );
+        setFilterPost([]);
+      }}
     >
       <div className="reddit_clone-menu_close">
         <button onClick={() => setMenu(false)}>X</button>
@@ -50,7 +51,6 @@ const Menu = () => {
           setNewPost(false);
           navigate("/");
           setIsPopularPage(false);
-          setFilterPost([]);
         }}
       >
         {" "}

@@ -54,20 +54,58 @@ const RightSectionFooter = () => {
   return (
     <footer className="reddit_clone-section_right_footer">
       <div>
-        <p href="">user Agreement</p>
-        <p href="">Content Policy</p>
-        <p href="">Privacy Policy</p>
-        <p href="">Modern Code of conduct</p>
+        <a href="https://www.redditinc.com/policies/user-agreement">
+          user Agreement
+        </a>
+        <a href="https://www.redditinc.com/policies/content-policy">
+          Content Policy
+        </a>
+        <a href="https://www.reddit.com/policies/privacy-policy">
+          Privacy Policy
+        </a>
+        <a href="https://www.redditinc.com/policies/moderator-code-of-conduct">
+          Modern Code of conduct
+        </a>
       </div>
       <hr />
       <div>
-        <p href="">English</p>
-        <p href="">Deutsch</p>
-        <p href="">Francais</p>
+        <a
+          href="https://en.wikipedia.org/wiki/English_Wikipedia"
+          rel="noopener noreferrer"
+        >
+          English
+        </a>
+        <a
+          href="https://en.wikipedia.org/wiki/Deutsch"
+          rel="noopener noreferrer"
+        >
+          Deutsch
+        </a>
+        <a
+          href="https://en.wikipedia.org/wiki/French_language"
+          rel="noopener noreferrer"
+        >
+          Francais
+        </a>
 
-        <p href="">Italiano</p>
-        <p href="">Espanol</p>
-        <p href="">Portuges</p>
+        <a
+          href="https://en.wikipedia.org/wiki/Italian_language"
+          rel="noopener noreferrer"
+        >
+          Italiano
+        </a>
+        <a
+          href="https://en.wikipedia.org/wiki/Espa%C3%B1ol"
+          rel="noopener noreferrer"
+        >
+          Espanol
+        </a>
+        <a
+          href="https://en.wikipedia.org/wiki/Portuguese_language"
+          rel="noopener noreferrer"
+        >
+          Portuges
+        </a>
       </div>
       <hr />
       <p className="reddit_clone-section_right_footer_p">

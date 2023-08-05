@@ -14,6 +14,8 @@ import { TbBoxPadding } from "react-icons/tb";
 import { FaUserAstronaut } from "react-icons/fa";
 import UserImage from "../UserImage";
 import { GiAlienSkull } from "react-icons/gi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const Vote = ({ initialVote = 0 }) => {
   const [vote, setVote] = useState(parseInt(initialVote));
   const { login } = useContext(MyContext);
@@ -86,8 +88,10 @@ function VideoPlayer(props) {
     </div>
   );
 }
+const copyLink = "https://reddit-random.netlify.app/";
 
 const Post = (props) => {
+  const [share, setShare] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { login, setId, allComment, setPostItem, setPath } =
@@ -134,13 +138,32 @@ const Post = (props) => {
         )}
         <p className="reddit_clone-post_textArea">{props.textArea}</p>
         <div className="reddit_clone-post_textArea_overlay"></div>
-        <div className="reddit_clone-post_comments">
+        <div
+          className="reddit_clone-post_comments"
+          onClick={(e) => e.stopPropagation()}
+        >
           <button onClick={handleComment}>
             <GoComment />
             {allComment[props.id]?.length} Comments
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setShare((p) => !p);
+              navigator.clipboard.writeText(copyLink);
+              toast("Link copied to Clipboard", {
+                position: "bottom-center",
+                autoClose: 10,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }}
+          >
             <FaShare /> Share
+            <span></span>
           </button>
           <button>
             <BsSave />
@@ -148,6 +171,19 @@ const Post = (props) => {
           </button>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={10}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
