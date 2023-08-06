@@ -101,6 +101,8 @@ const Post = (props) => {
   const [share, setShare] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [save, setSave] = useState(false);
+  // const [share, setShare] = useState(false);
   const { login, setId, allComment, setPostItem, setPath, setShowForm } =
     useContext(MyContext);
   const handleComment = () => {
@@ -159,11 +161,15 @@ const Post = (props) => {
           </button>
           <button
             onClick={() => {
-              setShare((p) => !p);
+              setShare(true);
+              setTimeout(() => {
+                setShare(false);
+              }, 2000);
+              // setShare((p) => !p);
               navigator.clipboard.writeText(copyLink);
               toast("Link copied to Clipboard", {
                 position: "bottom-center",
-                autoClose: 10,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -172,11 +178,30 @@ const Post = (props) => {
                 theme: "light",
               });
             }}
+            disabled={share}
           >
             <FaShare /> Share
             <span></span>
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setSave(true);
+              setTimeout(() => {
+                setSave(false);
+              }, 3000);
+              toast("Post saved successful", {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }}
+            disabled={save}
+          >
             <BsSave />
             Save
           </button>
@@ -184,8 +209,7 @@ const Post = (props) => {
       </div>
       <ToastContainer
         position="bottom-center"
-        autoClose={10}
-        limit={1}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

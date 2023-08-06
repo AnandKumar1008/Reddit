@@ -38,7 +38,7 @@ const Home = () => {
       // console.log(arr);
       setUpdate(arr || []);
     };
-    fireBaseApi();
+    // fireBaseApi();
 
     const user = JSON.parse(localStorage.getItem("reddit_google"));
     if (user?.userName) {
