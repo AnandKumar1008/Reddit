@@ -17,8 +17,9 @@ import { GiAlienSkull } from "react-icons/gi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export const Vote = ({ initialVote = 0 }) => {
+  // const {login,setShowForm}=useContext(MyContext);
   const [vote, setVote] = useState(parseInt(initialVote));
-  const { login } = useContext(MyContext);
+  const { login, setShowForm } = useContext(MyContext);
   const [oneVote, setOneVote] = useState({
     up: true,
     down: true,
@@ -27,7 +28,10 @@ export const Vote = ({ initialVote = 0 }) => {
   const [val, setVal] = useState(vote);
   const handleUp = (e) => {
     e.stopPropagation();
-    if (!login) return;
+    if (!login) {
+      setShowForm("Login");
+      return;
+    }
     if (oneVote.up) {
       setVote(val + 1);
       setOneVote({ up: false, down: true });
@@ -38,7 +42,10 @@ export const Vote = ({ initialVote = 0 }) => {
   };
   const handleDown = (e) => {
     e.stopPropagation();
-    if (!login) return;
+    if (!login) {
+      setShowForm("Login");
+      return;
+    }
     if (oneVote.down) {
       setVote(val - 1);
       setOneVote({ up: true, down: false });
@@ -94,9 +101,13 @@ const Post = (props) => {
   const [share, setShare] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { login, setId, allComment, setPostItem, setPath } =
+  const { login, setId, allComment, setPostItem, setPath, setShowForm } =
     useContext(MyContext);
   const handleComment = () => {
+    if (!login) {
+      setShowForm("Login");
+      return;
+    }
     setPostItem({
       props,
     });
