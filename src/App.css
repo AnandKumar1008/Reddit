@@ -3,3 +3,12 @@
   align-items: center;
   justify-content: center;
 }
+.reddit_clone-app_top_mover {
+  position: fixed;
+  bottom: 0rem;
+  right: 0rem;
+}
+.reddit_clone-app_top_mover a {
+  font-size: 2rem;
+  cursor: pointer;
+}

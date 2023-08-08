@@ -6,6 +6,8 @@ import Nav from "./Components/Nav/Nav.jsx";
 import Menu from "./Components/Menu/Menu.jsx";
 export const MyContext = createContext();
 import Signup from "./Components/Signup/Signup";
+import { BiSolidUpArrowCircle } from "react-icons/bi";
+import { BiUpArrowAlt } from "react-icons/bi";
 // import CreatePost from "./Components/CreatePost/CreatePost";
 
 import { initialPosts } from "./Components/initialPosts.jsx";
@@ -147,6 +149,12 @@ const App = () => {
           setPseudoPost,
         }}
       >
+        {" "}
+        <div className="reddit_clone-app_top_mover">
+          <a href="#">
+            <BiUpArrowAlt />
+          </a>
+        </div>
         <Routes>
           <Route path="/comment" element={<CommentPage />} />
           <Route path="/" element={<Home />} />
@@ -157,7 +165,6 @@ const App = () => {
           <Route path="/coins" element={<Coinspage />} />
           <Route path="/comingpage" element={<Comingpage />} />
         </Routes>
-
         <div
           className="reddit_clone-app_authentication"
           style={showForm == "none" ? {} : over_lay}
