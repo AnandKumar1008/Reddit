@@ -63,6 +63,7 @@ const App = () => {
   const [qr, setQr] = useState(false);
   const [filterPost, setFilterPost] = useState([]);
   const [search, setSearch] = useState("");
+  const [pseudoPost, setPseudoPost] = useState([]);
   const location = useLocation();
   useEffect(() => {
     if (newPost) setNavMenu(arr[5]);
@@ -142,6 +143,8 @@ const App = () => {
           setFilterPost,
           search,
           setSearch,
+          pseudoPost,
+          setPseudoPost,
         }}
       >
         <Routes>

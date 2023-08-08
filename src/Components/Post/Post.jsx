@@ -115,7 +115,7 @@ const Post = (props) => {
     });
     setId(props.id);
     if (!allComment[props.id]) allComment[props.id] = [];
-    setPath(location.path);
+    setPath(location.pathname);
     navigate("/comment");
   };
   return (

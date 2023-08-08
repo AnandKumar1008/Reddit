@@ -50,6 +50,7 @@
 }
 .reddit_clone-popular_image_item {
   position: relative;
+  height: 100%;
 }
 .reddit_clone-popular_image_text {
   position: absolute;
@@ -79,6 +80,7 @@
   /* margin-right: 4rem; */
   gap: 1rem;
   justify-content: space-between;
+  cursor: pointer;
 }
 .reddit_clone-popular_img > * {
   flex: 1;

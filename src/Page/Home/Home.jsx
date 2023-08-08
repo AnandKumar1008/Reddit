@@ -8,7 +8,7 @@ import CreatePost from "../../Components/CreatePost/CreatePost";
 import Menu from "../../Components/Menu/Menu";
 import RightSection from "../../Components/RightSection/RightSection";
 import Stick from "../Popular/Stick";
-
+import { apiUrl } from "../Popular/Popular";
 const Home = () => {
   const {
     setUpdate,
@@ -21,9 +21,28 @@ const Home = () => {
     setUserPhoto,
     over_lay,
     menu,
+    setPseudoPost,
   } = useContext(MyContext);
 
   useEffect(() => {
+    const showNewImages = async () => {
+      const res = await fetch(`${apiUrl}`);
+      const data = await res.json();
+      const arr = [];
+      console.log(data);
+      data.forEach((item, i) => {
+        arr.push({
+          title: item?.alt_description,
+          id: item.id,
+          image: item?.urls?.regular,
+          vote: Math.ceil(Math.random() * 1000),
+          textArea: "",
+        });
+      });
+      console.log(arr, "home data");
+      setPseudoPost(arr || []);
+    };
+    showNewImages();
     const fireBaseApi = async () => {
       const response = await fetch(
         "https://redditdata-3dd62-default-rtdb.firebaseio.com/database.json"
@@ -46,6 +65,12 @@ const Home = () => {
       setUserPhoto(user.userPhoto);
       setLogin(true);
       return;
+    }
+    const checkUser = JSON.parse(localStorage.getItem("current_user")) || "";
+
+    if (checkUser) {
+      setUserName(checkUser);
+      setLogin(true);
     }
   }, []);
 

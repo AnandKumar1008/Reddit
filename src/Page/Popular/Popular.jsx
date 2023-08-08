@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Allposts from "../../Components/AllPosts/AllPosts";
 import Nav from "../../Components/Nav/Nav";
 // import AllPosts from "../../Components/AllPosts/AllPosts";
@@ -14,7 +14,10 @@ import {
 import Menu from "../../Components/Menu/Menu";
 import RightSection from "../../Components/RightSection/RightSection";
 import Stick from "./Stick";
-
+import { useNavigate } from "react-router-dom";
+const count = 4;
+const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
+export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acessKey}&count=${count}`;
 const subreddit = "all";
 // const rand = "https://www.reddit.com/r/random/.json?limit=30";
 // const randomUrl =  "https://www.reddit.com/r/" + subreddit + "/random.json?limit=30";
@@ -31,7 +34,12 @@ const Popular = () => {
   const {
     setUpdate,
     showForm,
-
+    login,
+    allComment,
+    setShowForm,
+    setPostItem,
+    setId,
+    setPath,
     setLoading,
     isAllPage,
     menu,
@@ -39,45 +47,79 @@ const Popular = () => {
     redditIndex,
     setApiPosts,
   } = useContext(MyContext);
-
+  const [images, setImages] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
-    const fireBaseApi = async () => {
-      const response = await fetch(
-        "https://redditclone-59718-default-rtdb.firebaseio.com/database.json"
-      );
-      const data = await response.json();
-      console.log(data);
-      setUpdate(Object.values(data || {}).reverse());
-    };
-    const redditApi = async () => {
-      // const url = "https://www.reddit.com/r/all/top.json?limit=30";
-      const response = await fetch(
-        `https://www.reddit.com/r/${subReddit[redditIndex % 10]}.json`
-      );
+    try {
+      const redditApi = async () => {
+        // const url = "https://www.reddit.com/r/all/top.json?limit=30";
+        const response = await fetch(
+          `https://www.reddit.com/r/${subReddit[redditIndex % 10]}.json`
+        );
 
-      const data = await response.json();
-      console.log(data);
-      // console.log(data?.data?.children);
-      const arr = data?.data?.children;
-      const posts = [];
-      arr?.forEach((e, i) => {
-        posts.push({
-          userPhoto: e.data?.photo,
-          userName: e.data?.author,
-          key: e.data?.id,
-          id: e.data?.id,
-          title: e.data?.title,
-          image: e.data?.url,
-          vote: e.data?.ups,
-          textArea: e.data?.textArea,
-          thumbnail: e.data?.thumbnail,
-          video_url: e.data?.media?.reddit_video?.fallback_url,
+        const data = await response.json();
+        // console.log(data);
+        // console.log(data?.data?.children);
+        const arr = data?.data?.children;
+        const posts = [];
+        arr?.forEach((e, i) => {
+          posts.push({
+            userPhoto: e.data?.photo,
+            userName: e.data?.author,
+            key: e.data?.id,
+            id: e.data?.id,
+            title: e.data?.title,
+            image: e.data?.url,
+            vote: e.data?.ups,
+            textArea: e.data?.textArea,
+            thumbnail: e.data?.thumbnail,
+            video_url: e.data?.media?.reddit_video?.fallback_url,
+          });
         });
-      });
-      setApiPosts(posts);
-    };
-    redditApi();
+        setApiPosts(posts);
+      };
+      redditApi();
+    } catch (error) {
+      console.log(error);
+    }
+
+    try {
+      const showImages = async () => {
+        const res = await fetch(`${apiUrl}`);
+        const data = await res.json();
+        const arr = [];
+        data.forEach((item, i) => {
+          arr.push({
+            title: item?.alt_description,
+            id: item.id,
+            image: item?.urls?.regular,
+            vote: Math.ceil(Math.random() * 100),
+            textArea: "",
+          });
+        });
+        setImages(arr);
+        console.log(data);
+      };
+      showImages();
+    } catch (error) {
+      console.log(error);
+    }
   }, [redditIndex]);
+  const handleImageClick = (index) => {
+    const props = images[index];
+    console.log(props);
+    if (!login) {
+      setShowForm("Login");
+      return;
+    }
+    setPostItem({
+      props,
+    });
+    setId(props?.id);
+    if (!allComment[props?.id]) allComment[props?.id] = [];
+    setPath(location.pathname);
+    navigate("/comment");
+  };
 
   return (
     <div
@@ -96,7 +138,21 @@ const Popular = () => {
             false
           ) : (
             <div className="reddit_clone-popular_img">
-              <div className="reddit_clone-popular_image_item">
+              {images.map((item, i) => (
+                <div
+                  key={item.id}
+                  id={i}
+                  className="reddit_clone-popular_image_item"
+                  onClick={() => handleImageClick(i)}
+                >
+                  <img src={item.image} alt="" />
+                  <div className="reddit_clone-popular_image_text">
+                    <h4>Heading</h4>
+                    <p>{item.title}</p>
+                  </div>
+                </div>
+              ))}
+              {/* <div className="reddit_clone-popular_image_item">
                 <img src={img1} alt="" />
                 <div className="reddit_clone-popular_image_text">
                   <h4>Heading</h4>
@@ -105,8 +161,8 @@ const Popular = () => {
                     not working
                   </p>
                 </div>
-              </div>
-              <div className="reddit_clone-popular_image_item">
+              </div> */}
+              {/* <div className="reddit_clone-popular_image_item">
                 <img src={img2} alt="" />
                 <div className="reddit_clone-popular_image_text">
                   <h4>Heading</h4>
@@ -115,8 +171,8 @@ const Popular = () => {
                     not working
                   </p>
                 </div>
-              </div>
-              <div className="reddit_clone-popular_image_item">
+              </div> */}
+              {/* <div className="reddit_clone-popular_image_item">
                 <img src={img3} alt="" />
                 <div className="reddit_clone-popular_image_text">
                   <h4>Heading</h4>
@@ -125,8 +181,8 @@ const Popular = () => {
                     not working
                   </p>
                 </div>
-              </div>
-              <div className="reddit_clone-popular_image_item">
+              </div> */}
+              {/* <div className="reddit_clone-popular_image_item">
                 <img src={img4} alt="" />
                 <div className="reddit_clone-popular_image_text">
                   <h4>Heading</h4>
@@ -135,7 +191,7 @@ const Popular = () => {
                     not working
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
           {isAllPage ? (
