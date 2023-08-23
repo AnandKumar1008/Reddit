@@ -5,6 +5,11 @@ import { FaApple } from "react-icons/fa";
 import { MyContext } from "../../App";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase";
+import axios from "axios";
+
+const firebaseUrl = "https://redditdata-3dd62-default-rtdb.firebaseio.com/";
+const loginDataNode = "loginData.json"; // You can name it however you want
+
 const Login = () => {
   const { setShowForm, setLogin, setUserName, setUserPhoto } =
     useContext(MyContext);
@@ -41,11 +46,26 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         setUserName(result.user.displayName);
+        const userName = result.user.displayName;
+        const userPhoto = result.user.photoURL;
+        const data = {
+          userName: userName,
+          userPhoto: userPhoto,
+        };
+
+        axios
+          .post(`${firebaseUrl}${loginDataNode}`, data)
+          .then((response) => {
+            console.log("Data posted successfully:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error posting data:", error);
+          });
         localStorage.setItem(
           "reddit_google",
           JSON.stringify({
-            userName: result.user.displayName,
-            userPhoto: result.user.photoURL,
+            userName,
+            userPhoto,
           })
         );
         setLogin(true);

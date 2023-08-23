@@ -43,7 +43,7 @@ const PostText = (props) => {
     setInp({ ...inp, [e.target.name]: e.target.value });
   };
   const handleImage = (e) => {
-    const file = event.target.files[0];
+    const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
       setImage(reader.result);
