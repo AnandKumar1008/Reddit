@@ -21,22 +21,6 @@ const Home = () => {
     menu,
   } = useContext(MyContext);
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("reddit_google"));
-    if (user?.userName) {
-      setUserName(user.userName);
-      setUserPhoto(user.userPhoto);
-      setLogin(true);
-      return;
-    }
-    const checkUser = JSON.parse(localStorage.getItem("current_user")) || "";
-
-    if (checkUser) {
-      setUserName(checkUser);
-      setLogin(true);
-    }
-  }, []);
-
   return (
     <div
       className="reddit_clone-app"

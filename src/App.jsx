@@ -34,6 +34,8 @@ const App = () => {
     qr,
     newPost,
     setUpdate,
+    setLogin,
+    setUserPhoto,
   } = useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
@@ -58,6 +60,7 @@ const App = () => {
   };
   useEffect(() => {
     console.log(theme);
+
     const showNewImages = async () => {
       const res = await fetch(`${apiUrl}`);
       const data = await res.json();
@@ -93,6 +96,20 @@ const App = () => {
     document.body.style.backgroundColor = "var(--color-background)";
     const current_user = localStorage.getItem("current_user");
     if (current_user) setUserName(JSON.parse(current_user));
+
+    const user = JSON.parse(localStorage.getItem("reddit_google"));
+    if (user?.userName) {
+      setUserName(user.userName);
+      setUserPhoto(user.userPhoto);
+      setLogin(true);
+      return;
+    }
+    const checkUser = JSON.parse(localStorage.getItem("current_user")) || "";
+
+    if (checkUser) {
+      setUserName(checkUser);
+      setLogin(true);
+    }
   }, [theme]);
 
   return (
