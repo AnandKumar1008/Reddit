@@ -1,10 +1,5 @@
 import React, { useContext } from "react";
-import { Footer } from "../../Components/Premium/Premium";
 import redditcoin from "../../Components/Image/Redditcoin.png";
-import "./Coins.css";
-import silver from "../../Components/Image/silver.jpg";
-import gold from "../../Components/Image/gold.jpg";
-import platinum from "../../Components/Image/platinum.jpg";
 import coinbag from "../../Components/Image/coinbag.jpg";
 import coinbag2 from "../../Components/Image/coinbag2.jpg";
 import coinbag3 from "../../Components/Image/coinbag3.jpg";
@@ -12,11 +7,16 @@ import coinbag4 from "../../Components/Image/coinbag4.jpg";
 import coinbag5 from "../../Components/Image/coinbag5.jpg";
 import coinbag6 from "../../Components/Image/coinbag6.png";
 import coinbag7 from "../../Components/Image/coinbag7.jpg";
+import gold from "../../Components/Image/gold.jpg";
+import platinum from "../../Components/Image/platinum.jpg";
+import silver from "../../Components/Image/silver.jpg";
+import { Footer } from "../../Components/Premium/Premium";
+import "./Coins.css";
 // import { Accordion } from "@mui/material";
 import Accordion from "../../Components/Accordian/Accordian";
 import Nav from "../../Components/Nav/Nav";
-import Menu from "../Menu/Menu";
 import { MyContext } from "../../MyContext";
+import Menu from "../Menu/Menu";
 // import { MyContext } from "../../App";
 const coins = [
   coinbag2,

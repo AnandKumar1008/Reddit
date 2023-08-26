@@ -1,20 +1,15 @@
 import React, { useContext } from "react";
-import "./Menu.css";
-import { AiFillHome } from "react-icons/ai";
-import { TbCircleArrowUpRightFilled } from "react-icons/tb";
-import { BsFileBarGraph } from "react-icons/bs";
-import { RiUserSettingsLine } from "react-icons/ri";
-import { AiOutlineMessage } from "react-icons/ai";
-import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import { AiFillHome, AiOutlineMessage, AiOutlinePlus } from "react-icons/ai";
+import { BsFileBarGraph, BsShield } from "react-icons/bs";
 import { CiCoinInsert } from "react-icons/ci";
-import { BsShield } from "react-icons/bs";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoShirtOutline } from "react-icons/io5";
-// import { MyContext } from "../../App";
-import { useNavigate } from "react-router-dom";
+import { RiUserSettingsLine } from "react-icons/ri";
+import "./Menu.css";
 import { BsArrowUpRightCircle } from "react-icons/bs";
-import { arr } from "../NavMenuArray";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../MyContext";
+import { arr } from "../NavMenuArray";
 const darkModeStyle = {
   backgroundColor: "var(--color-lightDark)",
   color: "white",

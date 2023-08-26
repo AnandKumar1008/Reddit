@@ -1,21 +1,16 @@
 import React, { useContext } from "react";
-import "./Premium.css";
-import img from "../Image/img.png";
 import { RiAdvertisementFill } from "react-icons/ri";
-import { LuSofa } from "react-icons/lu";
-import { GrAppsRounded } from "react-icons/gr";
-// import {LiaCoinsSolid} from 'react-icons/l'
+import img from "../Image/img.png";
+import "./Premium.css";
 import avatar from "../Image/avatar.jpg";
-import lounge from "../Image/lounge.jpg";
 import coin from "../Image/coins.jpg";
 import app from "../Image/customapp.jpg";
+import lounge from "../Image/lounge.jpg";
 import premAvatar from "../Image/premiumavatar.png";
 import Menu from "../Menu/Menu";
-// import { MyContext } from "../../App";
 import { AiFillTwitterCircle } from "react-icons/ai";
-import { BsFacebook } from "react-icons/bs";
 import { BiLogoInstagramAlt } from "react-icons/bi";
-import { BsWhatsapp } from "react-icons/bs";
+import { BsFacebook, BsWhatsapp } from "react-icons/bs";
 import { MyContext } from "../../MyContext";
 const Premium = () => {
   const { menu } = useContext(MyContext);

@@ -1,30 +1,28 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { FaReddit } from "react-icons/fa";
-import { AiOutlinePlus } from "react-icons/ai";
-import { BsChevronDown, BsQrCodeScan } from "react-icons/bs";
-import { CgLogIn } from "react-icons/cg";
-import { CiCoinInsert } from "react-icons/ci";
-import { FcAdvertising } from "react-icons/fc";
-import { GiAlienSkull } from "react-icons/gi";
-import { IoIosNotificationsOutline } from "react-icons/io";
-import { RiContactsLine } from "react-icons/ri";
-// import { MyContext } from "../../App";
-import "./Nav.css";
-import { AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage, AiOutlinePlus } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
 import {
   BsArrowBarLeft,
   BsArrowUpRightCircle,
+  BsChevronDown,
+  BsQrCodeScan,
   BsQuestionLg,
   BsShield,
 } from "react-icons/bs";
-import { CiCircleMore } from "react-icons/ci";
+import { CgLogIn } from "react-icons/cg";
+import { CiCircleMore, CiCoinInsert } from "react-icons/ci";
+import { FaReddit } from "react-icons/fa";
+import { FcAdvertising } from "react-icons/fc";
 import { FiFileText } from "react-icons/fi";
+import { GiAlienSkull } from "react-icons/gi";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { RiContactsLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../MyContext";
 import NavMenu from "../NavMenu/NavMenu.jsx";
 import { arr } from "../NavMenuArray";
 import { initialPosts } from "../initialPosts";
-import { MyContext } from "../../MyContext";
+import "./Nav.css";
 const style = {
   border: "1px solid var(--color-border)",
   borderRadius: " 3px",

@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import "./Comingpage.css";
-import Nav from "../../Components/Nav/Nav";
-import Menu from "../../Components/Menu/Menu";
-// import { MyContext } from "../../App";
 import coming from "../../Components/Image/c.webp";
+import Menu from "../../Components/Menu/Menu";
+import Nav from "../../Components/Nav/Nav";
 import { MyContext } from "../../MyContext";
+import "./Comingpage.css";
 const Comingpage = () => {
   const { showForm, over_lay, menu } = useContext(MyContext);
   return (

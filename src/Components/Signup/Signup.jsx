@@ -3,7 +3,6 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import "./Signup.css";
 import { MyContext } from "../../MyContext";
-// import { MyContext } from "../../App";
 const Signup = () => {
   const { setShowForm } = useContext(MyContext);
   const handleSubmit = () => {

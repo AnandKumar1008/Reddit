@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-// import { MyContext } from "../../App";
 import Post from "../Post/Post";
 import "./Allposts.css";
 import { initialPosts } from "../initialPosts";
 import { useLocation } from "react-router-dom";
 import { MyContext } from "../../MyContext";
-const count = 5;
+const count = 10;
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acessKey}&count=${count}`;
 let ready = true;
@@ -45,7 +44,7 @@ const AllPosts = () => {
         ready = false;
         setTimeout(() => {
           ready = true;
-        }, 5000);
+        }, 3000);
       }
     };
     window.addEventListener("scroll", infiniteScroll);

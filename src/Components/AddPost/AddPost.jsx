@@ -1,9 +1,7 @@
-import React, { useRef, useState, createContext, useContext } from "react";
-import Post from "../Post/Post";
-import "./AddPost.css";
-// import { MyContext } from "../../App";
+import React, { useRef } from "react";
 import { FaReddit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import "./AddPost.css";
 const AddPost = ({ setNewPost }) => {
   const inputRef = useRef();
   const navigate = useNavigate();

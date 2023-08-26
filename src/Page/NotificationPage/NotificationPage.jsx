@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import Notification from "../../Components/Notification/Notification";
-import "./NotificationPage.css";
 import Nav from "../../Components/Nav/Nav";
+import Notification from "../../Components/Notification/Notification";
 import { MyContext } from "../../MyContext";
-// import { MyContext } from "../../App";
+import "./NotificationPage.css";
 const NotificationPage = () => {
   const { over_lay, showForm } = useContext(MyContext);
   return (

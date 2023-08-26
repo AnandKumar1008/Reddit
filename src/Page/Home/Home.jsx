@@ -1,18 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import AddPost from "../../Components/AddPost/AddPost";
 import Allposts from "../../Components/AllPosts/AllPosts";
-import Nav from "../../Components/Nav/Nav";
-import "./Home.css";
-// import { MyContext } from "../../App";
 import CreatePost from "../../Components/CreatePost/CreatePost";
 import Menu from "../../Components/Menu/Menu";
+import Nav from "../../Components/Nav/Nav";
 import RightSection from "../../Components/RightSection/RightSection";
-import Stick from "../Popular/Stick";
-import { apiUrl } from "../Popular/Popular";
 import { MyContext } from "../../MyContext";
+import Stick from "../Popular/Stick";
+import "./Home.css";
 const Home = () => {
   const {
-    setUpdate,
     login,
     setLogin,
     newPost,
@@ -22,7 +19,6 @@ const Home = () => {
     setUserPhoto,
     over_lay,
     menu,
-    setPseudoPost,
   } = useContext(MyContext);
 
   useEffect(() => {

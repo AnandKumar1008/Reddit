@@ -1,19 +1,12 @@
 import React from "react";
 
-import { AiFillHome } from "react-icons/ai";
-import { BsFileBarGraph } from "react-icons/bs";
-import { RiUserSettingsLine } from "react-icons/ri";
-import { AiOutlineMessage } from "react-icons/ai";
-import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import { AiFillHome, AiOutlineMessage, AiOutlinePlus } from "react-icons/ai";
+import { BsArrowUpRightCircle, BsFileBarGraph, BsShield } from "react-icons/bs";
 import { CiCoinInsert } from "react-icons/ci";
-import { BsShield } from "react-icons/bs";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoShirtOutline } from "react-icons/io5";
-import { BsArrowUpRightCircle } from "react-icons/bs";
+import { RiUserSettingsLine } from "react-icons/ri";
 
-// const style={
-//     backgroundColor:
-// }
 export const arr = [
   <button key={1}>
     {" "}

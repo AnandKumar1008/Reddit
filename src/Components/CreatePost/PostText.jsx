@@ -1,10 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { GrCircleInformation } from "react-icons/gr";
-import "./PostText.css";
-import Post from "../Post/Post";
 import { MyContext } from "../../MyContext";
-// import { MyContext } from "../../App";
+import "./PostText.css";
 const ImageUpload = ({ setImg }) => {
   const handleChange = (e) => {
     setImg(URL.createObjectURL(e.target.files[0]));
@@ -93,31 +91,7 @@ const PostText = (props) => {
     } else {
       console.error("Error:", response.status);
     }
-    // *************USEDLOCAL STORAGE********************************************
 
-    // const localData = JSON.parse(localStorage.getItem("reddit_post")) || [];
-    // localData.push({
-    //   id: `${update.length + 1}`,
-    //   title: inp.title,
-    //   vote: 0,
-    //   image: image,
-    //   textArea: inp.textArea,
-    // });
-    // localStorage.setItem("reddit_post", JSON.stringify(localData));
-    // *********************************************************************************
-    // const localData = localStorage.getItem("reddit_post");
-    // localData.unshift(
-    //   <Post
-    //     key={update.length}
-    //     id={update.length}
-    //     title={inp.title}
-    //     vote={0}
-    //     textArea={inp.textArea}
-    //   />
-    // );
-    // localStorage.setItem("reddit_post", JSON.stringify(localData));
-    // setAllComment([[],...allComment])
-    // allComment.push([]);
     setWait(null);
     setNewPost((p) => !p);
   };

@@ -1,12 +1,11 @@
-import React, { useContext, useState } from "react";
-import "./Login.css";
-import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
-// import { MyContext } from "../../App";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase";
 import axios from "axios";
+import { signInWithPopup } from "firebase/auth";
+import React, { useContext, useState } from "react";
+import { FaApple } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { MyContext } from "../../MyContext";
+import { auth, provider } from "../../firebase";
+import "./Login.css";
 
 const firebaseUrl = "https://redditdata-3dd62-default-rtdb.firebaseio.com/";
 const loginDataNode = "loginData.json"; // You can name it however you want

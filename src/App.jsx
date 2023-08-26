@@ -1,43 +1,28 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { BiUpArrowAlt } from "react-icons/bi";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Signup from "./Components/Signup/Signup";
-import Home from "./Page/Home/Home.jsx";
-// export const MyContext = createContext();
-// import CreatePost from "./Components/CreatePost/CreatePost";
-
 import "./App.css";
 import Login from "./Components/Login/Login.jsx";
 import { arr } from "./Components/NavMenuArray.jsx";
 import RedditQr from "./Components/RedditQr/RedditQr.jsx";
 import CreatePassword from "./Components/Signup/CreatePassword.jsx";
+import Signup from "./Components/Signup/Signup";
 import { initialPosts } from "./Components/initialPosts.jsx";
+import { MyContext } from "./MyContext";
 import Coinspage from "./Page/CoinsPage/Coinspage.jsx";
 import Comingpage from "./Page/Comingpage/Comingpage.jsx";
 import CommentPage from "./Page/CommentPage/CommentPage.jsx";
+import Home from "./Page/Home/Home.jsx";
 import Messages from "./Page/Messages/Messages.jsx";
 import NotificationPage from "./Page/NotificationPage/NotificationPage.jsx";
 import Popular from "./Page/Popular/Popular.jsx";
 import PremiumPage from "./Page/PremiumPage/PremiumPage.jsx";
-const allComment = JSON.parse(localStorage.getItem("reddit_comment")) || {};
-// const localComment = JSON.parse(localStorage.getItem("reddit_comment")) || {};
-import { apiUrl } from "./Components/AllPosts/AllPosts.jsx";
-import { MyContext } from "./MyContext";
+const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
 }
-const subReddit = [
-  "funny",
-  "gifs",
-  "pics",
-  "videos",
-  "aww",
-  "worldnews",
-  "science",
-  "gaming",
-  "movies",
-  "music",
-];
+const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acessKey}&count=6`;
+
 const App = () => {
   const {
     showForm,
@@ -150,7 +135,6 @@ const App = () => {
           <RedditQr />
         </div>
       )}
-      {/* </MyContext.Provider> */}
     </div>
   );
 };

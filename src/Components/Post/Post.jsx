@@ -1,24 +1,16 @@
 import React, { useContext, useState } from "react";
+import { ImArrowDown, ImArrowUp } from "react-icons/im";
 import "./Post.css";
-import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { BiDownvote, BiUpvote } from "react-icons/bi";
-import { ImArrowUp, ImArrowDown } from "react-icons/im";
-import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
-// import { MyContext } from "../../App";
-import { GoComment } from "react-icons/go";
-import { FaShare } from "react-icons/fa";
 import { BsSave } from "react-icons/bs";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { TbBoxPadding } from "react-icons/tb";
-import { FaUserAstronaut } from "react-icons/fa";
-import UserImage from "../UserImage";
+import { FaShare } from "react-icons/fa";
 import { GiAlienSkull } from "react-icons/gi";
+import { GoComment } from "react-icons/go";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MyContext } from "../../MyContext";
+import UserImage from "../UserImage";
 export const Vote = ({ initialVote = 0 }) => {
-  // const {login,setShowForm}=useContext(MyContext);
   const [vote, setVote] = useState(parseInt(initialVote));
   const { login, setShowForm } = useContext(MyContext);
   const [oneVote, setOneVote] = useState({

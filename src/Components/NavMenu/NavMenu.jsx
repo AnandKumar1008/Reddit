@@ -1,44 +1,32 @@
 import React, { useContext } from "react";
 import "./NavMenu.css";
 // import { MyContext } from "../../App";
-import { AiFillHome } from "react-icons/ai";
-import { TbCircleArrowUpRightFilled } from "react-icons/tb";
-import { BsFileBarGraph } from "react-icons/bs";
-import { RiUserSettingsLine } from "react-icons/ri";
-import { AiOutlineMessage } from "react-icons/ai";
-import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import { AiFillHome, AiOutlineMessage, AiOutlinePlus } from "react-icons/ai";
+import { BsArrowUpRightCircle, BsFileBarGraph, BsShield } from "react-icons/bs";
 import { CiCoinInsert } from "react-icons/ci";
-import { BsShield } from "react-icons/bs";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoShirtOutline } from "react-icons/io5";
+import { RiUserSettingsLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { BsArrowUpRightCircle } from "react-icons/bs";
-import { arr } from "../NavMenuArray";
 import { MyContext } from "../../MyContext";
+import { arr } from "../NavMenuArray";
 const darkModeStyle = {
   backgroundColor: "var(--color-lightDark)",
   color: "white",
 };
 
 const NavMenu = ({ width }) => {
-  // const navigate = useNavigate();
   const navigate = useNavigate();
   const {
     setNewPost,
     setIsAllPage,
-    update,
-    setUpdate,
     setIsPopularPage,
-    over_lay,
-    navMenu,
-    setMenu,
     setRedditIndex,
     setNavMenu,
   } = useContext(MyContext);
   return (
     <div
       className="reddit_clone-nav_menu_item"
-      // style={showForm === "none" ? {} : over_lay}
       style={{ width: "16rem" }}
       onClick={(e) => {
         console.log(e.target);
