@@ -34,7 +34,7 @@ const NavMenu = ({ width }) => {
         setNavMenu(val);
       }}
     >
-      <p>FEEDS</p>
+      <p style={{ fontSize: "0.8rem" }}>FEEDS</p>
       <button
         id="1"
         onClick={() => {
@@ -67,7 +67,7 @@ const NavMenu = ({ width }) => {
       >
         <BsFileBarGraph className="reddit_clone-nav_menu_icons" /> All
       </button>
-      <p>OTHER</p>
+      <p style={{ fontSize: "0.8rem" }}>OTHER</p>
       <button id="4" onClick={() => navigate("/comingpage")}>
         <RiUserSettingsLine className="reddit_clone-nav_menu_icons" /> User
         Setting

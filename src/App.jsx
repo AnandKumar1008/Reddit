@@ -17,6 +17,7 @@ import Messages from "./Page/Messages/Messages.jsx";
 import NotificationPage from "./Page/NotificationPage/NotificationPage.jsx";
 import Popular from "./Page/Popular/Popular.jsx";
 import PremiumPage from "./Page/PremiumPage/PremiumPage.jsx";
+import NotFound from "./Components/NotFound/NotFound";
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
@@ -132,6 +133,7 @@ const App = () => {
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/coins" element={<Coinspage />} />
         <Route path="/comingpage" element={<Comingpage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <div
         className="reddit_clone-app_authentication"
