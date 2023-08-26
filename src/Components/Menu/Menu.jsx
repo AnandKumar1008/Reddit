@@ -10,10 +10,11 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiCoinInsert } from "react-icons/ci";
 import { BsShield } from "react-icons/bs";
 import { IoShirtOutline } from "react-icons/io5";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { BsArrowUpRightCircle } from "react-icons/bs";
 import { arr } from "../NavMenuArray";
+import { MyContext } from "../../MyContext";
 const darkModeStyle = {
   backgroundColor: "var(--color-lightDark)",
   color: "white",

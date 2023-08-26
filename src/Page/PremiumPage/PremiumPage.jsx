@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import Premium from "../../Components/Premium/Premium";
 import Nav from "../../Components/Nav/Nav";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 
 const PremiumPage = () => {
   const { over_lay, showForm } = useContext(MyContext);

@@ -11,11 +11,12 @@ import coin from "../Image/coins.jpg";
 import app from "../Image/customapp.jpg";
 import premAvatar from "../Image/premiumavatar.png";
 import Menu from "../Menu/Menu";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import { BsWhatsapp } from "react-icons/bs";
+import { MyContext } from "../../MyContext";
 const Premium = () => {
   const { menu } = useContext(MyContext);
   return (

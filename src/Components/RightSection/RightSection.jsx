@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useState, useContext } from "react";
 import "./Rightsection.css";
 // import { GrShield } from "react-icons/gr";
 import { BsShield } from "react-icons/bs";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { arr } from "../NavMenuArray";
+import { MyContext } from "../../MyContext";
 const RightSectionPremium = () => {
   const navigate = useNavigate();
   const { setNavMenu } = useContext(MyContext);

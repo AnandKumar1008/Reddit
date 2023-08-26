@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import "./RedditQr.css";
 import qr from "../Image/redditqr.jpg";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 const RedditQr = () => {
   const { setQr } = useContext(MyContext);
   return (

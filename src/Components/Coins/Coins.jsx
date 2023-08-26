@@ -16,7 +16,8 @@ import coinbag7 from "../../Components/Image/coinbag7.jpg";
 import Accordion from "../../Components/Accordian/Accordian";
 import Nav from "../../Components/Nav/Nav";
 import Menu from "../Menu/Menu";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 const coins = [
   coinbag2,
   coinbag,

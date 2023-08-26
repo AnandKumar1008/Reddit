@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import "./Message.css";
 import Menu from "../Menu/Menu";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 const Message = () => {
   const { menu } = useContext(MyContext);
   return (

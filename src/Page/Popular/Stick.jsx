@@ -4,8 +4,9 @@ import { BiSolidHot } from "react-icons/bi";
 import { FaHotjar } from "react-icons/fa";
 import { CiSun } from "react-icons/ci";
 import { BsFileBarGraph } from "react-icons/bs";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { initialPosts } from "../../Components/initialPosts";
+import { MyContext } from "../../MyContext";
 const country = [
   "United States",
   "Canada",

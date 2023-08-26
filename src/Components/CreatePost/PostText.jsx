@@ -3,7 +3,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { GrCircleInformation } from "react-icons/gr";
 import "./PostText.css";
 import Post from "../Post/Post";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 const ImageUpload = ({ setImg }) => {
   const handleChange = (e) => {
     setImg(URL.createObjectURL(e.target.files[0]));

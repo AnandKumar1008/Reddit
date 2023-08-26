@@ -4,10 +4,11 @@ import { BsSave } from "react-icons/bs";
 import { FaShare, FaUserAstronaut } from "react-icons/fa";
 import { GoComment } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { Vote } from "../Post/Post";
 import UserImage from "../UserImage";
 import "./Comment.css";
+import { MyContext } from "../../MyContext";
 
 export const MakeComment = ({ textArea, userName }) => {
   return (

@@ -8,7 +8,7 @@ import { FcAdvertising } from "react-icons/fc";
 import { GiAlienSkull } from "react-icons/gi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { RiContactsLine } from "react-icons/ri";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import "./Nav.css";
 import { AiOutlineMessage } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import NavMenu from "../NavMenu/NavMenu.jsx";
 import { arr } from "../NavMenuArray";
 import { initialPosts } from "../initialPosts";
+import { MyContext } from "../../MyContext";
 const style = {
   border: "1px solid var(--color-border)",
   borderRadius: " 3px",
@@ -246,13 +247,13 @@ const Nav = () => {
       return;
     }
     const arr = apiPosts.filter((item) =>
-      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+      item?.title?.toLowerCase().includes(e.target.value.toLowerCase())
     );
     const brr = update.filter((item) =>
-      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+      item?.title?.toLowerCase().includes(e.target.value.toLowerCase())
     );
     const crr = initialPosts.filter((item) =>
-      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+      item?.title?.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilterPost([...arr, ...brr, ...crr]);
     // setApiPosts(arr);

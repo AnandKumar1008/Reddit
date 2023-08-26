@@ -5,7 +5,7 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { GoComment } from "react-icons/go";
 import { FaShare } from "react-icons/fa";
 import { BsSave } from "react-icons/bs";
@@ -16,6 +16,7 @@ import UserImage from "../UserImage";
 import { GiAlienSkull } from "react-icons/gi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MyContext } from "../../MyContext";
 export const Vote = ({ initialVote = 0 }) => {
   // const {login,setShowForm}=useContext(MyContext);
   const [vote, setVote] = useState(parseInt(initialVote));
@@ -102,7 +103,6 @@ const Post = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [save, setSave] = useState(false);
-  // const [share, setShare] = useState(false);
   const { login, setId, allComment, setPostItem, setPath, setShowForm } =
     useContext(MyContext);
   const handleComment = () => {
@@ -116,7 +116,7 @@ const Post = (props) => {
     setId(props.id);
     if (!allComment[props.id]) allComment[props.id] = [];
     setPath(location.pathname);
-    navigate("/comment");
+    navigate(`/comment`);
   };
   return (
     <div className="reddit_clone-post" id={props.id} onClick={handleComment}>

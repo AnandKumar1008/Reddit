@@ -1,33 +1,28 @@
-import React, { createContext, useEffect, useState } from "react";
-import Home from "./Page/Home/Home.jsx";
-import { Routes, Route, useLocation } from "react-router-dom";
-import Comment from "./Components/Comment/Comment.jsx";
-import Nav from "./Components/Nav/Nav.jsx";
-import Menu from "./Components/Menu/Menu.jsx";
-export const MyContext = createContext();
-import Signup from "./Components/Signup/Signup";
-import { BiSolidUpArrowCircle } from "react-icons/bi";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { BiUpArrowAlt } from "react-icons/bi";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Signup from "./Components/Signup/Signup";
+import Home from "./Page/Home/Home.jsx";
+// export const MyContext = createContext();
 // import CreatePost from "./Components/CreatePost/CreatePost";
 
-import { initialPosts } from "./Components/initialPosts.jsx";
-import Post from "./Components/Post/Post.jsx";
-import { MakeComment } from "./Components/Comment/Comment.jsx";
 import "./App.css";
-import Premium from "./Components/Premium/Premium.jsx";
-import PremiumPage from "./Page/PremiumPage/PremiumPage.jsx";
-import Popular from "./Page/Popular/Popular.jsx";
-import Messages from "./Page/Messages/Messages.jsx";
-import NotificationPage from "./Page/NotificationPage/NotificationPage.jsx";
-import Coinspage from "./Page/CoinsPage/Coinspage.jsx";
 import Login from "./Components/Login/Login.jsx";
+import { arr } from "./Components/NavMenuArray.jsx";
+import RedditQr from "./Components/RedditQr/RedditQr.jsx";
+import CreatePassword from "./Components/Signup/CreatePassword.jsx";
+import { initialPosts } from "./Components/initialPosts.jsx";
+import Coinspage from "./Page/CoinsPage/Coinspage.jsx";
 import Comingpage from "./Page/Comingpage/Comingpage.jsx";
 import CommentPage from "./Page/CommentPage/CommentPage.jsx";
+import Messages from "./Page/Messages/Messages.jsx";
+import NotificationPage from "./Page/NotificationPage/NotificationPage.jsx";
+import Popular from "./Page/Popular/Popular.jsx";
+import PremiumPage from "./Page/PremiumPage/PremiumPage.jsx";
 const allComment = JSON.parse(localStorage.getItem("reddit_comment")) || {};
-import { arr } from "./Components/NavMenuArray.jsx";
-import CreatePassword from "./Components/Signup/CreatePassword.jsx";
-import RedditQr from "./Components/RedditQr/RedditQr.jsx";
 // const localComment = JSON.parse(localStorage.getItem("reddit_comment")) || {};
+import { apiUrl } from "./Components/AllPosts/AllPosts.jsx";
+import { MyContext } from "./MyContext";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
 }
@@ -44,28 +39,17 @@ const subReddit = [
   "music",
 ];
 const App = () => {
-  const [update, setUpdate] = useState([]);
-  const [login, setLogin] = useState(false);
-
-  const [newPost, setNewPost] = useState(false);
-  const [showForm, setShowForm] = useState("none");
-  const [userName, setUserName] = useState("");
-  const [postItem, setPostItem] = useState({});
-  const [id, setId] = useState(0);
-  const [userPhoto, setUserPhoto] = useState();
-  const [loading, setLoading] = useState("");
-  const [theme, setTheme] = useState("light-theme");
-  const [isAllPage, setIsAllPage] = useState(false);
-  const [isPopularPage, setIsPopularPage] = useState(false);
-  const [menu, setMenu] = useState(window.innerWidth > 1200);
-  const [navMenu, setNavMenu] = useState(arr[0]);
-  const [apiPosts, setApiPosts] = useState([]);
-  const [redditIndex, setRedditIndex] = useState(0);
-  const [path, setPath] = useState("/");
-  const [qr, setQr] = useState(false);
-  const [filterPost, setFilterPost] = useState([]);
-  const [search, setSearch] = useState("");
-  const [pseudoPost, setPseudoPost] = useState([]);
+  const {
+    showForm,
+    setNavMenu,
+    theme,
+    setPseudoPost,
+    isAllPage,
+    setUserName,
+    qr,
+    newPost,
+    setUpdate,
+  } = useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
     if (newPost) setNavMenu(arr[5]);
@@ -89,6 +73,37 @@ const App = () => {
   };
   useEffect(() => {
     console.log(theme);
+    const showNewImages = async () => {
+      const res = await fetch(`${apiUrl}`);
+      const data = await res.json();
+      const arr = [];
+      console.log(data);
+      data.forEach((item, i) => {
+        arr.push({
+          title: item?.alt_description,
+          id: item.id,
+          image: item?.urls?.regular,
+          vote: Math.ceil(Math.random() * 1000),
+          textArea: "",
+        });
+      });
+      console.log(arr, "home data");
+      setPseudoPost(arr || []);
+    };
+    showNewImages();
+    const fireBaseApi = async () => {
+      const response = await fetch(
+        "https://redditdata-3dd62-default-rtdb.firebaseio.com/database.json"
+      );
+      const data = await response.json();
+      const arr = [];
+      Object.entries(data).forEach(([key, value]) =>
+        arr.push({ ...value, id: key })
+      );
+      setUpdate(arr.reverse() || []);
+    };
+    fireBaseApi();
+
     document.body.className = theme;
     document.body.style.backgroundColor = "var(--color-background)";
     const current_user = localStorage.getItem("current_user");
@@ -100,91 +115,42 @@ const App = () => {
       className="reddit_clone-app"
       style={qr ? { pointerEvents: "none", overflow: "hidden" } : {}}
     >
-      <MyContext.Provider
-        value={{
-          path,
-          setPath,
-          id,
-          setId,
-          update,
-          setUpdate,
-          login,
-          setLogin,
-          showForm,
-          setShowForm,
-          theme,
-          setTheme,
-          newPost,
-          setNewPost,
-          userName,
-          setUserName,
-          postItem,
-          setPostItem,
-          allComment,
-          userPhoto,
-          setUserPhoto,
-          loading,
-          setLoading,
-          isAllPage,
-          setIsAllPage,
-          isPopularPage,
-          setIsPopularPage,
-          over_lay,
-          menu,
-          setMenu,
-          navMenu,
-          setNavMenu,
-          apiPosts,
-          setApiPosts,
-          redditIndex,
-          setRedditIndex,
-          subReddit,
-          qr,
-          setQr,
-          filterPost,
-          setFilterPost,
-          search,
-          setSearch,
-          pseudoPost,
-          setPseudoPost,
-        }}
+      {" "}
+      <div className="reddit_clone-app_top_mover">
+        <a href="#">
+          <BiUpArrowAlt />
+        </a>
+      </div>
+      <Routes>
+        <Route path="/comment" element={<CommentPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/premium" element={<PremiumPage />} />
+        <Route path="/popular" element={<Popular />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/notification" element={<NotificationPage />} />
+        <Route path="/coins" element={<Coinspage />} />
+        <Route path="/comingpage" element={<Comingpage />} />
+      </Routes>
+      <div
+        className="reddit_clone-app_authentication"
+        style={showForm == "none" ? {} : over_lay}
       >
-        {" "}
-        <div className="reddit_clone-app_top_mover">
-          <a href="#">
-            <BiUpArrowAlt />
-          </a>
-        </div>
-        <Routes>
-          <Route path="/comment" element={<CommentPage />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/premium" element={<PremiumPage />} />
-          <Route path="/popular" element={<Popular />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/notification" element={<NotificationPage />} />
-          <Route path="/coins" element={<Coinspage />} />
-          <Route path="/comingpage" element={<Comingpage />} />
-        </Routes>
-        <div
-          className="reddit_clone-app_authentication"
-          style={showForm == "none" ? {} : over_lay}
-        >
-          {showForm == "Login" ? (
-            <Login />
-          ) : showForm == "Signup" ? (
-            <Signup />
-          ) : showForm == "create_password" ? (
-            <CreatePassword />
-          ) : (
-            false
-          )}
-        </div>
-        {qr && (
-          <div className="reddit_clone-app_qr" style={qr ? over_lay : {}}>
-            <RedditQr />
-          </div>
+        {showForm == "Login" ? (
+          <Login />
+        ) : showForm == "Signup" ? (
+          <Signup />
+        ) : showForm == "create_password" ? (
+          <CreatePassword />
+        ) : (
+          false
         )}
-      </MyContext.Provider>
+      </div>
+      {qr && (
+        <div className="reddit_clone-app_qr" style={qr ? over_lay : {}}>
+          <RedditQr />
+        </div>
+      )}
+      {/* </MyContext.Provider> */}
     </div>
   );
 };

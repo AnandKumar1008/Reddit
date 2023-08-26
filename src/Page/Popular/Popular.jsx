@@ -4,7 +4,7 @@ import Nav from "../../Components/Nav/Nav";
 // import AllPosts from "../../Components/AllPosts/AllPosts";
 import "./Popular.css";
 // export const MyContext = createContext();
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import img3 from "../../Components/Image/coins.jpg";
 import img2 from "../../Components/Image/customapp.jpg";
 import {
@@ -15,6 +15,7 @@ import Menu from "../../Components/Menu/Menu";
 import RightSection from "../../Components/RightSection/RightSection";
 import Stick from "./Stick";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../MyContext";
 const count = 4;
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acessKey}&count=${count}`;

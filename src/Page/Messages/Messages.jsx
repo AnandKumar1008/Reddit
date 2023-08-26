@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import Message from "../../Components/Message/Message";
 import Nav from "../../Components/Nav/Nav";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 
 const Messages = () => {
   const { over_lay, showForm } = useContext(MyContext);

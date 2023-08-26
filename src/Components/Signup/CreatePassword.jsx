@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./CreatePassword.css";
 import { BiArrowBack } from "react-icons/bi";
-import { MyContext } from "../../App";
+import { MyContext } from "../../MyContext";
+// import { MyContext } from "../../App";
 const CreatePassword = () => {
   const { setShowForm, setLogin, setUserName } = useContext(MyContext);
   const [inp, setInp] = useState({

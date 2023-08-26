@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./NavMenu.css";
-import { MyContext } from "../../App";
+// import { MyContext } from "../../App";
 import { AiFillHome } from "react-icons/ai";
 import { TbCircleArrowUpRightFilled } from "react-icons/tb";
 import { BsFileBarGraph } from "react-icons/bs";
@@ -14,6 +14,7 @@ import { IoShirtOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { BsArrowUpRightCircle } from "react-icons/bs";
 import { arr } from "../NavMenuArray";
+import { MyContext } from "../../MyContext";
 const darkModeStyle = {
   backgroundColor: "var(--color-lightDark)",
   color: "white",
