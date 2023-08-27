@@ -33,8 +33,9 @@ const Popular = () => {
     subReddit,
     redditIndex,
     setApiPosts,
+    images,
+    setImages,
   } = useContext(MyContext);
-  const [images, setImages] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     try {
@@ -66,28 +67,6 @@ const Popular = () => {
         setApiPosts(posts);
       };
       redditApi();
-    } catch (error) {
-      console.log(error);
-    }
-
-    try {
-      const showImages = async () => {
-        const res = await fetch(`${apiUrl}`);
-        const data = await res.json();
-        const arr = [];
-        data.forEach((item, i) => {
-          arr.push({
-            title: item?.alt_description,
-            id: item.id,
-            image: item?.urls?.regular,
-            vote: Math.ceil(Math.random() * 100),
-            textArea: "",
-          });
-        });
-        setImages(arr);
-        console.log(data);
-      };
-      showImages();
     } catch (error) {
       console.log(error);
     }
@@ -125,7 +104,7 @@ const Popular = () => {
             false
           ) : (
             <div className="reddit_clone-popular_img">
-              {images.map((item, i) => (
+              {images?.slice(0, 4)?.map((item, i) => (
                 <div
                   key={item.id}
                   id={i}

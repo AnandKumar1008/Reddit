@@ -37,6 +37,8 @@ const App = () => {
     setUpdate,
     setLogin,
     setUserPhoto,
+    images,
+    setImages,
   } = useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
@@ -77,6 +79,7 @@ const App = () => {
         });
       });
       console.log(arr, "home data");
+      setImages(arr);
       setPseudoPost(arr || []);
     };
     showNewImages();

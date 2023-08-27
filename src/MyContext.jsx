@@ -47,6 +47,8 @@ const MyProvider = ({ children }) => {
   const [filterPost, setFilterPost] = useState([]);
   const [search, setSearch] = useState("");
   const [pseudoPost, setPseudoPost] = useState([]);
+  const [images, setImages] = useState([]);
+
   return (
     <MyContext.Provider
       value={{
@@ -95,6 +97,8 @@ const MyProvider = ({ children }) => {
         setSearch,
         pseudoPost,
         setPseudoPost,
+        images,
+        setImages,
       }}
     >
       {children}
