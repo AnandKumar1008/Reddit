@@ -122,7 +122,7 @@ const Post = (props) => {
           textArea: props.textArea || "",
           img: props.image,
           vote: props.vote || Math.floor(Math.random() * 1000),
-          user: "6502b6ebb99bcb9137becd9f",
+          user: "65030399161b08e931204762",
           video_url: props?.video_url,
           thumbnail: props?.thumbnail,
         });

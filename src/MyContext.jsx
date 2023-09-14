@@ -34,7 +34,7 @@ const MyProvider = ({ children }) => {
   const [postItem, setPostItem] = useState({});
   const [id, setId] = useState(0);
   const [userPhoto, setUserPhoto] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState("light-theme");
   const [isAllPage, setIsAllPage] = useState(false);
   const [isPopularPage, setIsPopularPage] = useState(false);
@@ -49,7 +49,8 @@ const MyProvider = ({ children }) => {
   const [pseudoPost, setPseudoPost] = useState([]);
   const [images, setImages] = useState([]);
   const [userId, setUserId] = useState("");
-
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   return (
     <MyContext.Provider
       value={{
@@ -104,6 +105,10 @@ const MyProvider = ({ children }) => {
         setUserId,
         top,
         setTop,
+        email,
+        setEmail,
+        message,
+        setMessage,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { signInWithPopup } from "firebase/auth";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaApple } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MyContext } from "../../MyContext";
@@ -9,8 +9,15 @@ import "./Login.css";
 import { BASE_URL } from "../../BASE_URL";
 
 const Login = () => {
-  const { setShowForm, setLogin, setUserName, setUserPhoto, setUserId } =
-    useContext(MyContext);
+  const {
+    setShowForm,
+    setLogin,
+    setUserName,
+    setUserPhoto,
+    setUserId,
+    message,
+    setMessage,
+  } = useContext(MyContext);
   const [inp, setInp] = useState({
     email: "",
     password: "",
@@ -72,6 +79,11 @@ const Login = () => {
         console.log("Error", error);
       });
   };
+  useEffect(() => {
+    return () => {
+      setMessage("");
+    };
+  }, []);
   return (
     <div className="reddit_clone-login">
       <div className="reddit_clone-login_close">
@@ -98,6 +110,7 @@ const Login = () => {
           </button>
         </div>
         <hr />
+        <p style={{ color: "green" }}>{message}</p>
         <form className="reddit_clone-login_input" onSubmit={handleLogin}>
           <input
             type="email"

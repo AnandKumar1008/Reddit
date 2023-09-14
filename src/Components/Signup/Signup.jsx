@@ -4,7 +4,7 @@ import { FaApple } from "react-icons/fa";
 import "./Signup.css";
 import { MyContext } from "../../MyContext";
 const Signup = () => {
-  const { setShowForm } = useContext(MyContext);
+  const { setShowForm, email, setEmail } = useContext(MyContext);
   const handleSubmit = () => {
     setShowForm("create_password");
   };
@@ -35,7 +35,13 @@ const Signup = () => {
         </div>
         <hr />
         <form className="reddit_clone-signup_input" onSubmit={handleSubmit}>
-          <input type="email" placeholder="Email" required />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <p>
             Forgot your <a href="">username</a> of <a href="">password </a> ?
           </p>

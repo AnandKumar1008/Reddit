@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { MyContext } from "../../MyContext";
 import "./CreatePassword.css";
+import axios from "axios";
+import { BASE_URL } from "../../BASE_URL";
 const CreatePassword = () => {
-  const { setShowForm, setUserName } = useContext(MyContext);
+  const { setShowForm, setUserName, email, setMessage } = useContext(MyContext);
   const [inp, setInp] = useState({
     username: "",
-    create_password: "",
+    password: "",
   });
   const [error, setError] = useState({
     usernameError: "",
@@ -14,8 +16,12 @@ const CreatePassword = () => {
   });
   const handleChange = (e) => {
     setInp({ ...inp, [e.target.name]: e.target.value });
+    setError({
+      usernameError: "",
+      createpasswordError: "",
+    });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (inp.username.length <= 3 || inp.username.length > 20) {
       setError({
@@ -25,7 +31,7 @@ const CreatePassword = () => {
       e.preventDefault();
       return;
     }
-    if (inp.create_password.length <= 6) {
+    if (inp.password.length <= 6) {
       e.preventDefault();
       setError({
         ...error,
@@ -33,34 +39,23 @@ const CreatePassword = () => {
       });
       return;
     }
-    const reddit = JSON.parse(localStorage.getItem("reddit_clone")) || [];
-    //    const store=[]
-    // const data = JSON.parse(reddit);
-    if (reddit.length == 0) {
-      reddit.push({ username: inp.username, password: inp.create_password });
-      localStorage.setItem("reddit_clone", JSON.stringify(reddit));
-    } else {
-      // if (reddit.includes(inp.username)) {
-      //   setError({ ...error, usernameError: "UserName Already taken" });
-      //   return;
-      // }
-      let val = "";
-      reddit.forEach((e, i) => {
-        if (e.username === inp.username) {
-          // console.log("first hhere");
-          val = inp.username;
-          setError({ ...error, usernameError: "UserName Already taken" });
-          return;
-        }
+
+    // make an registeration for the email and username
+    try {
+      const res = await axios.post(`${BASE_URL}/api/v1/user/signup`, {
+        email,
+        password: inp.password,
+        userName: inp.username,
       });
-      if (val) return;
-      reddit.push({ username: inp.username, password: inp.create_password });
-      localStorage.setItem("reddit_clone", JSON.stringify(reddit));
+      setMessage("Account Creation Successful");
+
+      setShowForm("Login");
+    } catch (err) {
+      console.log(err);
+      setError({ ...error, usernameError: err?.message });
     }
-    // setLogin(true);
-    setUserName(inp.username);
-    setShowForm("Login");
   };
+
   return (
     <div className="reddit_clone-create_password">
       <div className="reddit_clone-create_password_close">
@@ -97,10 +92,10 @@ const CreatePassword = () => {
           <input
             type="password"
             placeholder="Create Password"
-            name="create_password"
+            name="password"
             required
             onChange={handleChange}
-            value={inp.create_password}
+            value={inp.password}
           />
           {error.createpasswordError && (
             <p style={{ color: "red" }}>{error.createpasswordError}</p>

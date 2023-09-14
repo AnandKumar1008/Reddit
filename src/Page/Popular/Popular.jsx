@@ -7,6 +7,8 @@ import RightSection from "../../Components/RightSection/RightSection";
 import { MyContext } from "../../MyContext";
 import "./Popular.css";
 import Stick from "./Stick";
+import axios from "axios";
+import { BASE_URL } from "../../BASE_URL";
 const count = 4;
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acessKey}&count=${count}`;
@@ -35,6 +37,7 @@ const Popular = () => {
     setApiPosts,
     images,
     setImages,
+    setLoading,
   } = useContext(MyContext);
   const navigate = useNavigate();
   useEffect(() => {
@@ -73,18 +76,42 @@ const Popular = () => {
   }, [redditIndex]);
   const handleImageClick = (index) => {
     const props = images[index];
-    console.log(props);
     if (!login) {
       setShowForm("Login");
       return;
     }
-    setPostItem({
-      props,
-    });
-    setId(props?.id);
-    if (!allComment[props?.id]) allComment[props?.id] = [];
-    setPath(location.pathname);
-    navigate("/comment");
+    let id = props?.id;
+    const postExist = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.post(`${BASE_URL}/api/v1/post/nouser`, {
+          title: props?.title,
+          textArea: props?.textArea || "",
+          img: props?.image,
+          vote: props?.vote || Math.floor(Math.random() * 1000),
+          user: "65030399161b08e931204762",
+          video_url: props?.video_url,
+          thumbnail: props?.thumbnail,
+        });
+        const data = res.data.data;
+
+        id = data._id;
+        setId(id);
+        setId(id);
+        setPath(location.pathname);
+        navigate(`/comment/${id}`);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (id.length != 24) {
+      postExist();
+    } else {
+      setId(id);
+      setPath(location.pathname);
+      navigate(`/comment/${id}`);
+    }
   };
 
   return (
@@ -118,46 +145,6 @@ const Popular = () => {
                   </div>
                 </div>
               ))}
-              {/* <div className="reddit_clone-popular_image_item">
-                <img src={img1} alt="" />
-                <div className="reddit_clone-popular_image_text">
-                  <h4>Heading</h4>
-                  <p>
-                    Perform your prescribed duty, for doing so is better than
-                    not working
-                  </p>
-                </div>
-              </div> */}
-              {/* <div className="reddit_clone-popular_image_item">
-                <img src={img2} alt="" />
-                <div className="reddit_clone-popular_image_text">
-                  <h4>Heading</h4>
-                  <p>
-                    Perform your prescribed duty, for doing so is better than
-                    not working
-                  </p>
-                </div>
-              </div> */}
-              {/* <div className="reddit_clone-popular_image_item">
-                <img src={img3} alt="" />
-                <div className="reddit_clone-popular_image_text">
-                  <h4>Heading</h4>
-                  <p>
-                    Perform your prescribed duty, for doing so is better than
-                    not working
-                  </p>
-                </div>
-              </div> */}
-              {/* <div className="reddit_clone-popular_image_item">
-                <img src={img4} alt="" />
-                <div className="reddit_clone-popular_image_text">
-                  <h4>Heading</h4>
-                  <p>
-                    Perform your prescribed duty, for doing so is better than
-                    not working
-                  </p>
-                </div>
-              </div> */}
             </div>
           )}
           {isAllPage ? (

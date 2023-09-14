@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { GrCircleInformation } from "react-icons/gr";
 import { MyContext } from "../../MyContext";
@@ -126,6 +126,12 @@ const PostText = (props) => {
     setLoading(false);
     setNewPost((p) => !p);
   };
+  useEffect(() => {
+    return () => {
+      window.location.reload();
+      setLoading(true);
+    };
+  }, []);
   return (
     <div className="reddit_clone-post_type">
       <input

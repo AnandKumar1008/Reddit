@@ -106,6 +106,7 @@ const Comment = ({ id }) => {
     getPost();
     return () => {
       window.location.reload();
+      setLoading(true);
     };
   }, []);
 
