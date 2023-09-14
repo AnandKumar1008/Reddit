@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsSave } from "react-icons/bs";
 import { FaShare, FaUserAstronaut } from "react-icons/fa";
@@ -8,40 +8,85 @@ import { MyContext } from "../../MyContext";
 import { Vote } from "../Post/Post";
 import UserImage from "../UserImage";
 import "./Comment.css";
-
-export const MakeComment = ({ textArea, userName }) => {
+import axios from "axios";
+import { BASE_URL } from "../../BASE_URL";
+import { formatDistanceToNow } from "date-fns";
+export const MakeComment = ({ textArea, userName, userPhoto, createdAt }) => {
   return (
     <div className="reddit_clone-comment_item">
       <div className="reddit_clone-comment_item_avatar">
-        <FaUserAstronaut />
+        {userPhoto ? (
+          <div className="reddit_clone-comment_user_img">
+            <img src={userPhoto} alt="" style={{ maxWidth: "100%" }} />
+          </div>
+        ) : (
+          <FaUserAstronaut />
+        )}
       </div>
       <div className="reddit_clone-comment_item_text">
         <span style={{ fontWeight: "bold", fontFamily: "var(--font-c)" }}>
           {userName}-
         </span>
-        <span style={{ fontWeight: 200, margin: "0 1rem" }}>{0}hrs ago</span>
+        <span style={{ fontWeight: 200, margin: "0 1rem" }}>
+          {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
+        </span>
         <hr />
         <p>{textArea}</p>
       </div>
     </div>
   );
 };
-const Comment = () => {
+const Comment = ({ id }) => {
   const navigate = useNavigate();
-  const { postItem, userName, id, path, allComment, login } =
+  const { postItem, setPostItem, userName, path, login, userId } =
     useContext(MyContext);
-  const [comment, setComment] = useState(allComment[id] || []);
-  const { props = {} } = postItem;
+  const [comment, setComment] = useState([]);
   const inpRef = useRef();
+  const getPostComment = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/v1/comment/post/${id}`);
+      const data = res.data.data;
 
-  const handleComment = () => {
+      setComment(data.reverse() || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleComment = async () => {
     if (inpRef.current.value === "") return;
     if (!login) return;
-    allComment[id]?.unshift({ userName, textArea: inpRef.current.value });
-    setComment([...allComment[id]]);
-    localStorage.setItem("reddit_comment", JSON.stringify(allComment));
+
+    try {
+      const res = await axios.post(`${BASE_URL}/api/v1/comment/upload`, {
+        comment: inpRef.current.value,
+        user: userId,
+        post: id,
+      });
+      getPostComment();
+    } catch (error) {
+      console.log(error);
+    }
     inpRef.current.value = "";
   };
+
+  useEffect(() => {
+    getPostComment();
+  }, []);
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/v1/post/${id}`);
+        const data = res.data.data;
+        setPostItem(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getPost();
+    return () => {
+      window.location.reload();
+    };
+  }, []);
 
   return (
     <div
@@ -57,7 +102,7 @@ const Comment = () => {
         }}
       >
         <div className="reddit_clone-comment_close">
-          <p>{props?.title}</p>
+          <p>{postItem?.title}</p>
           <div
             className="reddit_clone-comment_close_icon"
             onClick={() => {
@@ -69,27 +114,27 @@ const Comment = () => {
           </div>
         </div>
         <div className="reddit_clone-comment">
-          <Vote initialVote={Math.ceil(Math.random())} />
+          <Vote initialVote={postItem?.vote || 0} />
           <div className="reddit_clone-comment_post">
             <div className="reddit_clone-comment_user">
-              <UserImage src={props?.userPhoto} />
-              <p>{props?.userName}</p>
+              <UserImage src={postItem?.userPhoto} />
+              <p>{postItem?.userName}</p>
             </div>
             <div className="reddit_clone-comment_items">
-              <h3>{props?.title}</h3>
+              <h3>{postItem?.title}</h3>
               <img
-                src={props?.image}
+                src={postItem?.img || postItem.image}
                 alt=""
                 style={{
                   maxWidth: "100%",
                   border: "1px solid var(--color-border)",
                 }}
               />
-              <p>{props?.textArea}</p>
+              <p>{postItem?.textArea}</p>
             </div>
             <div className="reddit_clone-comment_comment_option">
               <button>
-                <GoComment /> {allComment[id]?.length} Comments
+                <GoComment /> {comment?.length} Comments
               </button>
               <button>
                 <FaShare /> Share
@@ -118,9 +163,11 @@ const Comment = () => {
             <div className="reddit_clone-comment_past_comment">
               {comment?.map((comment) => (
                 <MakeComment
-                  key={id}
-                  textArea={comment.textArea}
-                  userName={comment.userName}
+                  key={comment._id}
+                  textArea={comment.comment}
+                  userName={comment.user.userName}
+                  userPhoto={comment.user.userPhoto}
+                  createdAt={comment.createdAt}
                 />
               ))}
             </div>

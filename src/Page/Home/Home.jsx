@@ -8,6 +8,7 @@ import RightSection from "../../Components/RightSection/RightSection";
 import { MyContext } from "../../MyContext";
 import Stick from "../Popular/Stick";
 import "./Home.css";
+import { unstable_HistoryRouter } from "react-router-dom";
 const Home = () => {
   const {
     login,
@@ -20,7 +21,17 @@ const Home = () => {
     over_lay,
     menu,
   } = useContext(MyContext);
-
+  // const history = unstable_HistoryRouter();
+  // const x=useHistory();
+  // useEffect(() => {
+  //   const unlisten = history.listen(() => {
+  //     // Scroll to the top of the page when the route changes
+  //     window.scrollTo(0, 0);
+  //   });
+  //   return () => {
+  //     unlisten();
+  //   };
+  // }, [history]);
   return (
     <div
       className="reddit_clone-app"

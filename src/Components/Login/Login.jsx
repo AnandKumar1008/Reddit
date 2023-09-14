@@ -6,15 +6,13 @@ import { FcGoogle } from "react-icons/fc";
 import { MyContext } from "../../MyContext";
 import { auth, provider } from "../../firebase";
 import "./Login.css";
-
-const firebaseUrl = "https://redditdata-3dd62-default-rtdb.firebaseio.com/";
-const loginDataNode = "loginData.json"; // You can name it however you want
+import { BASE_URL } from "../../BASE_URL";
 
 const Login = () => {
-  const { setShowForm, setLogin, setUserName, setUserPhoto } =
+  const { setShowForm, setLogin, setUserName, setUserPhoto, setUserId } =
     useContext(MyContext);
   const [inp, setInp] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [error, setError] = useState("");
@@ -24,23 +22,38 @@ const Login = () => {
     }
     setInp({ ...inp, [e.target.name]: e.target.value });
   };
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const data = JSON.parse(localStorage.getItem("reddit_clone")) || [];
 
-    data.forEach((element) => {
-      if (
-        element.username === inp.username &&
-        element.password === inp.password
-      ) {
-        setLogin(true);
-        setShowForm("none");
-        localStorage.setItem("current_user", JSON.stringify(inp.username));
-        setUserName(inp.username);
-      }
-    });
+    try {
+      const res = await axios.post(`${BASE_URL}/api/v1/user/login`, {
+        email: inp.email,
+        password: inp.password,
+      });
+      const user = res.data;
+
+      setLogin(true);
+      setShowForm("none");
+      setUserName(user.data.userName);
+      setUserPhoto(user.data.userPhoto);
+      setUserId(user.data._id);
+      localStorage.setItem("reddit_token", JSON.stringify(user.token));
+    } catch (error) {
+      console.log(error);
+    }
 
     setError("invalid username or password");
+  };
+  const backend = async (data) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/api/v1/user/fireBase`, data);
+      const user = res.data;
+
+      setUserId(user.data._id);
+      localStorage.setItem("reddit_token", JSON.stringify(user.token));
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleGoogle = () => {
     signInWithPopup(auth, provider)
@@ -48,26 +61,9 @@ const Login = () => {
         setUserName(result.user.displayName);
         const userName = result.user.displayName;
         const userPhoto = result.user.photoURL;
-        const data = {
-          userName: userName,
-          userPhoto: userPhoto,
-        };
+        const email = result.user.email;
 
-        axios
-          .post(`${firebaseUrl}${loginDataNode}`, data)
-          .then((response) => {
-            console.log("Data posted successfully:", response.data);
-          })
-          .catch((error) => {
-            console.error("Error posting data:", error);
-          });
-        localStorage.setItem(
-          "reddit_google",
-          JSON.stringify({
-            userName,
-            userPhoto,
-          })
-        );
+        backend({ email, userPhoto, userName });
         setLogin(true);
         setShowForm("none");
         setUserPhoto(result.user.photoURL);
@@ -104,9 +100,9 @@ const Login = () => {
         <hr />
         <form className="reddit_clone-login_input" onSubmit={handleLogin}>
           <input
-            type="text"
-            placeholder="User Name"
-            name="username"
+            type="email"
+            placeholder="Email"
+            name="email"
             onChange={handleChange}
             required
             value={inp.username}

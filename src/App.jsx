@@ -18,6 +18,9 @@ import NotificationPage from "./Page/NotificationPage/NotificationPage.jsx";
 import Popular from "./Page/Popular/Popular.jsx";
 import PremiumPage from "./Page/PremiumPage/PremiumPage.jsx";
 import NotFound from "./Components/NotFound/NotFound";
+import { BASE_URL } from "./BASE_URL";
+import axios from "axios";
+import ScrollToTop from "./ScrollToTop";
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
@@ -39,6 +42,10 @@ const App = () => {
     setUserPhoto,
     images,
     setImages,
+    setShowForm,
+    userId,
+    setUserId,
+    setTop,
   } = useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
@@ -62,13 +69,10 @@ const App = () => {
     zIndex: "9999",
   };
   useEffect(() => {
-    console.log(theme);
-
     const showNewImages = async () => {
       const res = await fetch(`${apiUrl}`);
       const data = await res.json();
       const arr = [];
-      console.log(data);
       data.forEach((item, i) => {
         arr.push({
           title: item?.alt_description,
@@ -78,7 +82,6 @@ const App = () => {
           textArea: "",
         });
       });
-      console.log(arr, "home data");
       setImages(arr);
       setPseudoPost(arr || []);
     };
@@ -94,26 +97,35 @@ const App = () => {
       );
       setUpdate(arr.reverse() || []);
     };
-    fireBaseApi();
+    // fireBaseApi();
 
     document.body.className = theme;
     document.body.style.backgroundColor = "var(--color-background)";
-    const current_user = localStorage.getItem("current_user");
-    if (current_user) setUserName(JSON.parse(current_user));
+    const backendServer = async () => {
+      const res = await axios.get(`${BASE_URL}/api/v1/post/all`);
+      const data = res.data;
+      setUpdate(data.data.reverse() || []);
+      console.log(data);
+    };
+    backendServer();
 
-    const user = JSON.parse(localStorage.getItem("reddit_google"));
-    if (user?.userName) {
-      setUserName(user.userName);
-      setUserPhoto(user.userPhoto);
-      setLogin(true);
-      return;
-    }
-    const checkUser = JSON.parse(localStorage.getItem("current_user")) || "";
-
-    if (checkUser) {
-      setUserName(checkUser);
-      setLogin(true);
-    }
+    const checkUser = JSON.parse(localStorage.getItem("reddit_token")) || "";
+    const checkToken = async () => {
+      try {
+        const res = await axios.post(`${BASE_URL}/api/v1/user/token`, {
+          token: checkUser,
+        });
+        const user = res.data;
+        setLogin(true);
+        setShowForm("none");
+        setUserName(user.data.userName);
+        setUserPhoto(user.data.userPhoto);
+        setUserId(user.data._id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (checkUser) checkToken();
   }, [theme]);
 
   return (
@@ -123,12 +135,14 @@ const App = () => {
     >
       {" "}
       <div className="reddit_clone-app_top_mover">
-        <a href="#">
-          <BiUpArrowAlt />
-        </a>
+        <span onClick={() => setTop((p) => !p)}>
+          <BiUpArrowAlt style={{ fontSize: "2rem", cursor: "pointer" }} />
+        </span>
       </div>
+      {/* <ScrollRestoration> */}
+      <ScrollToTop />
       <Routes>
-        <Route path="/comment" element={<CommentPage />} />
+        <Route path="/comment/:id" element={<CommentPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/premium" element={<PremiumPage />} />
         <Route path="/popular" element={<Popular />} />
@@ -138,6 +152,7 @@ const App = () => {
         <Route path="/comingpage" element={<Comingpage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {/* </ScrollRestoration> */}
       <div
         className="reddit_clone-app_authentication"
         style={showForm == "none" ? {} : over_lay}

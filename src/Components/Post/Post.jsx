@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ImArrowDown, ImArrowUp } from "react-icons/im";
 import "./Post.css";
 import { BsSave } from "react-icons/bs";
@@ -10,6 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MyContext } from "../../MyContext";
 import UserImage from "../UserImage";
+import axios from "axios";
+import { BASE_URL } from "../../BASE_URL";
 export const Vote = ({ initialVote = 0 }) => {
   const [vote, setVote] = useState(parseInt(initialVote));
   const { login, setShowForm } = useContext(MyContext);
@@ -88,13 +90,14 @@ function VideoPlayer(props) {
     </div>
   );
 }
-const copyLink = "https://reddit-random.netlify.app/";
+let copyLink = "https://reddit-random.netlify.app";
 
 const Post = (props) => {
   const [share, setShare] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const [save, setSave] = useState(false);
+  const [count, setCount] = useState(0);
   const { login, setId, allComment, setPostItem, setPath, setShowForm } =
     useContext(MyContext);
   const handleComment = () => {
@@ -102,14 +105,49 @@ const Post = (props) => {
       setShowForm("Login");
       return;
     }
-    setPostItem({
-      props,
-    });
-    setId(props.id);
-    if (!allComment[props.id]) allComment[props.id] = [];
-    setPath(location.pathname);
-    navigate(`/comment`);
+    let id = props.id;
+    const postExist = async () => {
+      try {
+        const res = await axios.post(`${BASE_URL}/api/v1/post/nouser`, {
+          title: props.title,
+          textArea: props.textArea || "",
+          img: props.image,
+          vote: props.vote || Math.floor(Math.random() * 1000),
+          user: "6502b6ebb99bcb9137becd9f",
+          video_url: props?.video_url,
+          thumbnail: props?.thumbnail,
+        });
+        const data = res.data.data;
+
+        id = data._id;
+        setId(id);
+        setId(id);
+        setPath(location.pathname);
+        navigate(`/comment/${id}`);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (id.length != 24) {
+      postExist();
+    } else {
+      setId(id);
+      setPath(location.pathname);
+      navigate(`/comment/${id}`);
+    }
   };
+  useEffect(() => {
+    const CommentCount = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/v1/comment/${props?.id}`);
+        const data = res.data.count;
+        setCount(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (props?.id?.length === 24) CommentCount();
+  }, []);
   return (
     <div className="reddit_clone-post" id={props.id} onClick={handleComment}>
       <div className="reddit_clone-post_vote_div">
@@ -124,7 +162,7 @@ const Post = (props) => {
             ) : (
               <GiAlienSkull />
             )}{" "}
-            {props.userName ? props.userName : "Reddit Items"}
+            {props.userName ? props.userName : "Reddit Post"}
           </p>
         </div>
         <h3 style={{ color: "var(--color-rightsection-footer)" }}>
@@ -149,7 +187,7 @@ const Post = (props) => {
         >
           <button onClick={handleComment}>
             <GoComment />
-            {allComment[props.id]?.length} Comments
+            {count} Comments
           </button>
           <button
             onClick={() => {
@@ -157,7 +195,9 @@ const Post = (props) => {
               setTimeout(() => {
                 setShare(false);
               }, 2000);
-              // setShare((p) => !p);
+              if (props?.id?.length === 24) {
+                copyLink = `https://reddit-random.netlify.app/comment/${props.id}`;
+              } else copyLink = "https://reddit-random.netlify.app";
               navigator.clipboard.writeText(copyLink);
               toast("Link copied to Clipboard", {
                 position: "bottom-center",

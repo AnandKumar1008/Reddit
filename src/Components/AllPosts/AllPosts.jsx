@@ -4,6 +4,7 @@ import "./Allposts.css";
 import { initialPosts } from "../initialPosts";
 import { useLocation } from "react-router-dom";
 import { MyContext } from "../../MyContext";
+import { BASE_URL } from "../../BASE_URL";
 const count = 10;
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acessKey}&count=${count}`;
@@ -79,7 +80,7 @@ const AllPosts = () => {
             <></>
           ) : (
             <div>
-              {apiPosts?.map((post) => (
+              {apiPosts.slice(0, 10)?.map((post) => (
                 <Post
                   userName={post?.userName}
                   userPhoto={post?.userPhoto}
@@ -96,20 +97,30 @@ const AllPosts = () => {
             </div>
           )}
           <>
-            {update.length > 0 ? (
+            {update.map((post) => (
               <Post
-                key={update[0].id}
-                userName={update[0]?.userName}
-                id={update[0].id}
-                title={update[0].title}
-                vote={update[0].vote}
-                image={update[0]?.image}
-                textArea={update[0].textArea}
-                userPhoto={update[0]?.userPhoto}
+                key={post._id}
+                userName={post?.user?.userName}
+                id={post._id}
+                title={post.title}
+                vote={post.vote}
+                image={post.img || `${post?.image}`}
+                textArea={post.textArea}
+                userPhoto={post?.user?.userPhoto}
               />
-            ) : (
-              ""
-            )}
+            ))}
+            {/* {initialPosts?.map((post) => (
+              <Post
+                userName={post?.userName}
+                userPhoto={post?.userPhoto}
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                vote={post.vote}
+                image={post?.image}
+                textArea={post.textArea}
+              />
+            ))} */}
             {pseudoPost.map((post) => (
               <Post
                 userName={post?.userName}
@@ -125,30 +136,7 @@ const AllPosts = () => {
               />
             ))}
           </>
-          {update.map((post) => (
-            <Post
-              key={post.id}
-              userName={post?.userName}
-              id={post.id}
-              title={post.title}
-              vote={post.vote}
-              image={post?.image}
-              textArea={post.textArea}
-              userPhoto={post?.userPhoto}
-            />
-          ))}
-          {initialPosts?.map((post) => (
-            <Post
-              userName={post?.userName}
-              userPhoto={post?.userPhoto}
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              vote={post.vote}
-              image={post?.image}
-              textArea={post.textArea}
-            />
-          ))}
+
           {scroll.map((post) => (
             <Post
               userName={post?.userName}

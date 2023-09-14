@@ -23,25 +23,43 @@ import NavMenu from "../NavMenu/NavMenu.jsx";
 import { arr } from "../NavMenuArray";
 import { initialPosts } from "../initialPosts";
 import "./Nav.css";
+import { AddAPhoto } from "@mui/icons-material";
+import axios from "axios";
+import { BASE_URL } from "../../BASE_URL";
 const style = {
   border: "1px solid var(--color-border)",
   borderRadius: " 3px",
   cursor: "pointer",
 };
 const Option = () => {
-  const { login, setLogin, setShowForm, theme, setTheme, setNavMenu } =
-    useContext(MyContext);
+  const {
+    login,
+    setLogin,
+    setShowForm,
+    theme,
+    setTheme,
+    setNavMenu,
+    userId,
+    setUserId,
+  } = useContext(MyContext);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!login) {
       setShowForm("Login");
       return;
     }
     setLogin(false);
     const obj = {};
-    localStorage.removeItem("current_user");
-    localStorage.setItem("reddit_google", JSON.stringify(obj));
+    try {
+      await axios.post(`${BASE_URL}/api/v1/user/logout`, { userId });
+      console.log("Logout success ful");
+      setLogin(false);
+      localStorage.setItem("reddit_token", JSON.stringify(""));
+    } catch (error) {
+      console.log(error);
+    }
+    // localStorage.setItem("reddit_google", JSON.stringify(obj));
   };
   const handleTheme = () => {
     console.log(theme);
@@ -200,6 +218,7 @@ const Nav = () => {
     setFilterPost,
     search,
     setSearch,
+    pseudoPost,
   } = useContext(MyContext);
   const optionRef = useRef();
 
@@ -253,10 +272,10 @@ const Nav = () => {
     const crr = initialPosts.filter((item) =>
       item?.title?.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    setFilterPost([...arr, ...brr, ...crr]);
-    // setApiPosts(arr);
-    console.log(filterPost);
-    // console.log(input);
+    const drr = pseudoPost.filter((item) =>
+      item?.title?.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilterPost([...drr, ...arr, ...brr, ...crr]);
   };
   return (
     <div className="reddit_clone-nav_fixed">

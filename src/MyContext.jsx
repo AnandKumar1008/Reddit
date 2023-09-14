@@ -27,14 +27,14 @@ const over_lay = {
 const MyProvider = ({ children }) => {
   const [update, setUpdate] = useState([]);
   const [login, setLogin] = useState(false);
-
+  const [top, setTop] = useState(true);
   const [newPost, setNewPost] = useState(false);
   const [showForm, setShowForm] = useState("none");
   const [userName, setUserName] = useState("");
   const [postItem, setPostItem] = useState({});
   const [id, setId] = useState(0);
   const [userPhoto, setUserPhoto] = useState();
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState("light-theme");
   const [isAllPage, setIsAllPage] = useState(false);
   const [isPopularPage, setIsPopularPage] = useState(false);
@@ -48,6 +48,7 @@ const MyProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [pseudoPost, setPseudoPost] = useState([]);
   const [images, setImages] = useState([]);
+  const [userId, setUserId] = useState("");
 
   return (
     <MyContext.Provider
@@ -99,6 +100,10 @@ const MyProvider = ({ children }) => {
         setPseudoPost,
         images,
         setImages,
+        userId,
+        setUserId,
+        top,
+        setTop,
       }}
     >
       {children}

@@ -3,8 +3,11 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { GrCircleInformation } from "react-icons/gr";
 import { MyContext } from "../../MyContext";
 import "./PostText.css";
-const ImageUpload = ({ setImg }) => {
+import axios from "axios";
+import { BASE_URL } from "../../BASE_URL";
+const ImageUpload = ({ setImg, setNormalImage }) => {
   const handleChange = (e) => {
+    setNormalImage(e.target.files[0]);
     setImg(URL.createObjectURL(e.target.files[0]));
   };
   return (
@@ -21,15 +24,9 @@ const ImageUpload = ({ setImg }) => {
   );
 };
 const PostText = (props) => {
-  const {
-    update,
-    setUpdate,
-    setNewPost,
-    allComment,
-    userName,
-    userPhoto,
-    login,
-  } = useContext(MyContext);
+  const { update, setUpdate, setNewPost, userName, userPhoto, login, userId } =
+    useContext(MyContext);
+  const [normalImage, setNormalImage] = useState("");
   const [wait, setWait] = useState();
   const inpRef = useRef();
   const [image, setImage] = useState();
@@ -43,6 +40,7 @@ const PostText = (props) => {
   };
   const handleImage = (e) => {
     const file = e.target.files[0];
+    setNormalImage(e.target.files[0]);
     const reader = new FileReader();
     reader.onload = () => {
       setImage(reader.result);
@@ -52,46 +50,65 @@ const PostText = (props) => {
   const handlePost = async () => {
     if (!login) return;
     setWait("Please Wait...");
-    setUpdate([
-      {
-        userName: userName,
-        userPhoto,
-        id: `${update.length + 1}`,
-        title: inp?.title,
-        image: image,
-        vote: 0,
-        textArea: inp?.textArea,
-      },
+    const data = {
+      userName: userName,
+      userPhoto,
+      title: inp?.title,
+      image: image,
+      vote: 0,
+      textArea: inp?.textArea,
+    };
+    // setUpdate([data, ...update]);
+    const formData = new FormData();
+    formData.append("userName", userName);
+    formData.append("userPhoto", userPhoto);
+    formData.append("title", inp?.title);
+    formData.append("image", normalImage);
+    formData.append("vote", 0);
+    formData.append("textArea", inp?.textArea);
+    formData.append("user", userId);
 
-      ...update,
-    ]);
-    // ******************************************************
-    const response = await fetch(
-      "https://redditdata-3dd62-default-rtdb.firebaseio.com/database.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userPhoto,
-          userName: userName,
-          key: update.length,
-          id: `${update.length + 1}`,
-          title: inp.title,
-          image: image,
-          vote: 0,
-          textArea: inp?.textArea,
-        }),
-      }
-    );
+    // ******************************************************Making a post request to the fire base ********
 
-    if (response.ok) {
-      console.log("Post request successful");
-    } else {
-      console.error("Error:", response.status);
+    // const response = await fetch(
+    //   "https://redditdata-3dd62-default-rtdb.firebaseio.com/database.json",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       userPhoto,
+    //       userName: userName,
+
+    //       title: inp.title,
+    //       image: image,
+    //       vote: 0,
+    //       textArea: inp?.textArea,
+    //     }),
+    //   }
+    // );
+
+    //********************Data uploaded to fire base successful */
+    // if (response.ok) {
+    //   console.log("Post request successful");
+    // } else {
+    //   console.error("Error:", response.status);
+    // }
+    // data adding to firebase part
+    //*****************************lets make a post request to the server for post upload*********/
+
+    console.log(normalImage);
+    const res = await axios.post(`${BASE_URL}/api/v1/post/upload`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    const postData = res.data;
+    if (postData.status == "success") {
+      setUpdate([postData.data, ...update]);
+      console.log(postData.data, "post upload successful");
     }
 
+    // ************************************work in progress...
     setWait(null);
     setNewPost((p) => !p);
   };

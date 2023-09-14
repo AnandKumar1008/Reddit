@@ -25,6 +25,7 @@ const Menu = () => {
     setMenu,
     setRedditIndex,
     setFilterPost,
+    setTop,
   } = useContext(MyContext);
   return (
     <div
@@ -69,6 +70,7 @@ const Menu = () => {
           setIsAllPage(true);
           setRedditIndex((p) => p + 1);
           navigate("/popular");
+          setTop((p) => !p);
         }}
       >
         <BsFileBarGraph className="react_clone-menu_icons" /> All
