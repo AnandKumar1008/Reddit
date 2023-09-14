@@ -24,8 +24,16 @@ const ImageUpload = ({ setImg, setNormalImage }) => {
   );
 };
 const PostText = (props) => {
-  const { update, setUpdate, setNewPost, userName, userPhoto, login, userId } =
-    useContext(MyContext);
+  const {
+    update,
+    setUpdate,
+    setNewPost,
+    userName,
+    userPhoto,
+    login,
+    userId,
+    setLoading,
+  } = useContext(MyContext);
   const [normalImage, setNormalImage] = useState("");
   const [wait, setWait] = useState();
   const inpRef = useRef();
@@ -50,6 +58,7 @@ const PostText = (props) => {
   const handlePost = async () => {
     if (!login) return;
     setWait("Please Wait...");
+    setLoading(true);
     const data = {
       userName: userName,
       userPhoto,
@@ -99,17 +108,22 @@ const PostText = (props) => {
     //*****************************lets make a post request to the server for post upload*********/
 
     console.log(normalImage);
-    const res = await axios.post(`${BASE_URL}/api/v1/post/upload`, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    const postData = res.data;
-    if (postData.status == "success") {
-      setUpdate([postData.data, ...update]);
-      console.log(postData.data, "post upload successful");
+    try {
+      const res = await axios.post(`${BASE_URL}/api/v1/post/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      const postData = res.data;
+      if (postData.status == "success") {
+        setUpdate([postData.data, ...update]);
+        console.log(postData.data, "post upload successful");
+      }
+    } catch (error) {
+      console.log(error);
     }
 
     // ************************************work in progress...
     setWait(null);
+    setLoading(false);
     setNewPost((p) => !p);
   };
   return (
