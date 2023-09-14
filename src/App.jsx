@@ -21,6 +21,7 @@ import NotFound from "./Components/NotFound/NotFound";
 import { BASE_URL } from "./BASE_URL";
 import axios from "axios";
 import ScrollToTop from "./ScrollToTop";
+import Loader from "./Components/Loader";
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
@@ -46,6 +47,7 @@ const App = () => {
     userId,
     setUserId,
     setTop,
+    setLoading,
   } = useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
@@ -70,6 +72,7 @@ const App = () => {
   };
   useEffect(() => {
     const showNewImages = async () => {
+      setLoading(true);
       const res = await fetch(`${apiUrl}`);
       const data = await res.json();
       const arr = [];
@@ -84,6 +87,7 @@ const App = () => {
       });
       setImages(arr);
       setPseudoPost(arr || []);
+      setLoading(false);
     };
     showNewImages();
     const fireBaseApi = async () => {
@@ -140,6 +144,7 @@ const App = () => {
         </span>
       </div>
       {/* <ScrollRestoration> */}
+      <Loader />
       <ScrollToTop />
       <Routes>
         <Route path="/comment/:id" element={<CommentPage />} />

@@ -98,8 +98,16 @@ const Post = (props) => {
   const location = useLocation();
   const [save, setSave] = useState(false);
   const [count, setCount] = useState(0);
-  const { login, setId, allComment, setPostItem, setPath, setShowForm } =
-    useContext(MyContext);
+  const {
+    login,
+    setId,
+    allComment,
+    setPostItem,
+    setPath,
+    setShowForm,
+    loading,
+    setLoading,
+  } = useContext(MyContext);
   const handleComment = () => {
     if (!login) {
       setShowForm("Login");
@@ -108,6 +116,7 @@ const Post = (props) => {
     let id = props.id;
     const postExist = async () => {
       try {
+        setLoading(true);
         const res = await axios.post(`${BASE_URL}/api/v1/post/nouser`, {
           title: props.title,
           textArea: props.textArea || "",
@@ -124,6 +133,7 @@ const Post = (props) => {
         setId(id);
         setPath(location.pathname);
         navigate(`/comment/${id}`);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }

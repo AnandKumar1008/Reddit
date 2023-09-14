@@ -11,7 +11,14 @@ import "./Comment.css";
 import axios from "axios";
 import { BASE_URL } from "../../BASE_URL";
 import { formatDistanceToNow } from "date-fns";
-export const MakeComment = ({ textArea, userName, userPhoto, createdAt }) => {
+export const MakeComment = ({
+  textArea,
+  userName,
+  userPhoto,
+  createdAt,
+  loading,
+  setLoading,
+}) => {
   return (
     <div className="reddit_clone-comment_item">
       <div className="reddit_clone-comment_item_avatar">
@@ -38,11 +45,20 @@ export const MakeComment = ({ textArea, userName, userPhoto, createdAt }) => {
 };
 const Comment = ({ id }) => {
   const navigate = useNavigate();
-  const { postItem, setPostItem, userName, path, login, userId } =
-    useContext(MyContext);
+  const {
+    postItem,
+    setPostItem,
+    userName,
+    path,
+    login,
+    userId,
+    loading,
+    setLoading,
+  } = useContext(MyContext);
   const [comment, setComment] = useState([]);
   const inpRef = useRef();
   const getPostComment = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`${BASE_URL}/api/v1/comment/post/${id}`);
       const data = res.data.data;
@@ -51,11 +67,13 @@ const Comment = ({ id }) => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
   const handleComment = async () => {
     if (inpRef.current.value === "") return;
     if (!login) return;
 
+    setLoading(true);
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/comment/upload`, {
         comment: inpRef.current.value,
@@ -66,6 +84,7 @@ const Comment = ({ id }) => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
     inpRef.current.value = "";
   };
 
@@ -75,12 +94,14 @@ const Comment = ({ id }) => {
   useEffect(() => {
     const getPost = async () => {
       try {
+        setLoading(true);
         const res = await axios.get(`${BASE_URL}/api/v1/post/${id}`);
         const data = res.data.data;
         setPostItem(data);
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     };
     getPost();
     return () => {

@@ -11,8 +11,15 @@ export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acess
 let ready = true;
 const AllPosts = () => {
   const [scroll, setScroll] = useState([]);
-  const { update, apiPosts, filterPost, pseudoPost, search } =
-    useContext(MyContext);
+  const {
+    update,
+    apiPosts,
+    filterPost,
+    pseudoPost,
+    search,
+    loading,
+    setLoading,
+  } = useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
     const getMorePosts = async () => {
@@ -54,6 +61,7 @@ const AllPosts = () => {
       window.removeEventListener("scroll", infiniteScroll);
     };
   }, []);
+  if (loading) return <>Loading...</>;
 
   return (
     <div className="reddit_clone-allposts">
