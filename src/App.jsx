@@ -112,7 +112,7 @@ const App = () => {
       const res = await axios.get(`${BASE_URL}/api/v1/post/all`);
       const data = res.data;
       console.log(data);
-      setUpdate(data.data.reverse() || []);
+      setUpdate(data.data || []);
     };
     backendServer();
 
