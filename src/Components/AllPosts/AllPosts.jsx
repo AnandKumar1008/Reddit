@@ -11,15 +11,8 @@ export const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${acess
 let ready = true;
 const AllPosts = () => {
   const [scroll, setScroll] = useState([]);
-  const {
-    update,
-    apiPosts,
-    filterPost,
-    pseudoPost,
-    search,
-    loading,
-    setLoading,
-  } = useContext(MyContext);
+  const { update, apiPosts, filterPost, pseudoPost, search, loading } =
+    useContext(MyContext);
   const location = useLocation();
   useEffect(() => {
     const getMorePosts = async () => {
@@ -27,7 +20,7 @@ const AllPosts = () => {
         const res = await fetch(`${apiUrl}`);
         const data = await res.json();
         const arr = [];
-        console.log(arr, "before loop", scroll, "scroll item");
+
         data.forEach((item) => {
           arr.push({
             title: item?.alt_description,
@@ -57,7 +50,6 @@ const AllPosts = () => {
     };
     window.addEventListener("scroll", infiniteScroll);
     return () => {
-      console.log("clean up function");
       window.removeEventListener("scroll", infiniteScroll);
     };
   }, []);

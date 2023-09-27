@@ -22,6 +22,9 @@ import { BASE_URL } from "./BASE_URL";
 import axios from "axios";
 import ScrollToTop from "./ScrollToTop";
 import Loader from "./Components/Loader";
+import ProfilePage from "./Page/ProfilePage/ProfilePage";
+import Nav from "./Components/Nav/Nav";
+import Menu from "./Components/Menu/Menu";
 const acessKey = "zwTgacSWTV4UweSL2G1cKFPtPMtKQyJG7hBmlYtNKBo";
 if (!localStorage.getItem("reddit_post")) {
   localStorage.setItem("reddit_post", JSON.stringify(initialPosts));
@@ -108,8 +111,8 @@ const App = () => {
     const backendServer = async () => {
       const res = await axios.get(`${BASE_URL}/api/v1/post/all`);
       const data = res.data;
-      setUpdate(data.data.reverse() || []);
       console.log(data);
+      setUpdate(data.data.reverse() || []);
     };
     backendServer();
 
@@ -145,6 +148,8 @@ const App = () => {
       </div>
       {/* <ScrollRestoration> */}
       <Loader />
+      <Nav />
+      {/* <Menu /> */}
       <ScrollToTop />
       <Routes>
         <Route path="/comment/:id" element={<CommentPage />} />
@@ -155,6 +160,7 @@ const App = () => {
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/coins" element={<Coinspage />} />
         <Route path="/comingpage" element={<Comingpage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {/* </ScrollRestoration> */}

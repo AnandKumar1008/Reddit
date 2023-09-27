@@ -29,7 +29,6 @@ const NavMenu = ({ width }) => {
       className="reddit_clone-nav_menu_item"
       style={{ width: "16rem" }}
       onClick={(e) => {
-        console.log(e.target);
         const val = arr[parseInt(e.target.id) - 1];
         setNavMenu(val);
       }}

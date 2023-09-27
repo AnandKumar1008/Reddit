@@ -1,0 +1,18 @@
+.reddit_clone-profile_nav {
+  width: 100%;
+}
+.reddit_clone-profile_nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  background-color: var(--color-bg);
+  width: 100%;
+}
+.reddit_clone-profile_nav ul li {
+  padding: 0.5rem;
+  text-transform: uppercase;
+}
+.reddit_clone-profile_nav ul li:hover {
+  color: var(--color-a);
+  cursor: pointer;
+}

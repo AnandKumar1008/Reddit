@@ -9,7 +9,7 @@ import {
   BsQuestionLg,
   BsShield,
 } from "react-icons/bs";
-import { CgLogIn } from "react-icons/cg";
+import { CgLogIn, CgProfile } from "react-icons/cg";
 import { CiCircleMore, CiCoinInsert } from "react-icons/ci";
 import { FaReddit } from "react-icons/fa";
 import { FcAdvertising } from "react-icons/fc";
@@ -53,7 +53,7 @@ const Option = () => {
     const obj = {};
     try {
       await axios.post(`${BASE_URL}/api/v1/user/logout`, { userId });
-      console.log("Logout success ful");
+
       setLogin(false);
       localStorage.setItem("reddit_token", JSON.stringify(""));
     } catch (error) {
@@ -62,11 +62,34 @@ const Option = () => {
     // localStorage.setItem("reddit_google", JSON.stringify(obj));
   };
   const handleTheme = () => {
-    console.log(theme);
     setTheme((p) => (p == "light-theme" ? "dark-theme" : "light-theme"));
   };
   return (
     <div className="reddit_clone-nav_option">
+      {/* <button
+        onClick={() => {
+          navigate("/profile");
+        }}
+      >
+        <CgProfile /> Profile
+      </button> */}
+
+      <button
+        onClick={() => {
+          navigate("/coins");
+          setNavMenu(arr[7]);
+        }}
+      >
+        <CiCoinInsert className="reddit_clone-nav_menu_icons" /> Coins
+      </button>
+      <button
+        onClick={() => {
+          navigate("/premium");
+          setNavMenu(arr[8]);
+        }}
+      >
+        <BsShield className="reddit_clone-nav_menu_icons" /> Premium
+      </button>
       <button onClick={() => navigate("/comingpage")}>
         <BsQuestionLg /> Help Center
       </button>
@@ -78,24 +101,6 @@ const Option = () => {
       </button>
       <button onClick={() => navigate("/comingpage")}>
         <FcAdvertising /> Advertise on Reddit
-      </button>
-      <button
-        id="8"
-        onClick={() => {
-          navigate("/coins");
-          setNavMenu(arr[7]);
-        }}
-      >
-        <CiCoinInsert className="reddit_clone-nav_menu_icons" /> Coins
-      </button>
-      <button
-        id="9"
-        onClick={() => {
-          navigate("/premium");
-          setNavMenu(arr[8]);
-        }}
-      >
-        <BsShield className="reddit_clone-nav_menu_icons" /> Premium
       </button>
       <button onClick={handleLogin}>
         <CgLogIn /> LogIn & LogOut
@@ -227,7 +232,7 @@ const Nav = () => {
     setNavMenuWidth(w);
     const handleResize = () => {
       setMenu(parseFloat(window.innerWidth) > 1200);
-      console.log(window.innerWidth);
+
       setWindowWidth(parseFloat(window.innerWidth) > 1200);
     };
     window.addEventListener("resize", handleResize);
